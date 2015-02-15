@@ -1,0 +1,50 @@
+{% extends "html/notes/notes_template.html" %}
+
+{% block contents %}
+    <h1>CHEM 356 Notes</h1>
+    
+    <h2>The Harmonic Oscillator Model</h2>
+        <img src="/static/img/HarmOsziFunktionen.png"
+             alt="http://upload.wikimedia.org/wikipedia/commons/9/9e/HarmOsziFunktionen.png"
+             style="max-width:100%" />
+        <p>At any given time, the potential energy of a system is given by:</p>
+        <div class="math">$\begin{eqnarray*}
+                                             F &=& -kx \\
+                                            ma &=& -kx \\
+                            m\frac{d^2x}{dt^2} &=& -kx \\
+                             \frac{d^2x}{dt^2} &=& \frac{-k}{m} x \\
+             \frac{d^2x}{dt^2} + \frac{k}{m} x &=& 0 \\
+                                          x(t) &=& ... \\
+        \end{eqnarray*}$</div>
+        <p>(you can solve that)</p>
+        
+        <p>The potential energy of the system is then $V(x) = \frac{1}{2} kx^2$.</p>
+        <p>The potential energy operator is just $\hat{V} = \frac{1}{2} kx^2$.</p>
+        
+        <p>After a crunchy amount of maths, you'll end up with this:</p>
+        <div class="math">$E = (v + \frac{1}{2}) h\nu$</div>
+        <p>Noticing that $E_{min} = \frac{1}{2}h\nu$. Why is that?</p>
+        
+        <h3>Zero Point Energy (or the right name for it)</h3>
+            <p>The ground state of a particle has $\frac{1}{2}h\nu$ energy.
+                Even if the molecule has no energy to translate (move), it
+                still has energy to vibrate at 0K.</p>
+                
+        <h3>Tunnelling</h3>
+            <p>Tunnelling occurs in the Harmonic Oscillator model. <br />
+                The wavefunction is non-zero outside the $\frac{1}{2} kx^2$
+                parabola, which <b>somehow</b> explains ammonia's 
+                nitrogen inversion.
+            </p>
+            
+        <h3>Equations for the Harmonic Oscillator model</h3>
+            <ul>
+                <li>$\lt x \gt = 0$ (odd function)</li>
+                <li>$\lt p \gt = 0$ (odd function)</li>
+                <li>$\lt x^2 \gt = \frac{\hbar}{\sqrt{mk}} (v + \frac{1}{2})$</li>
+                <li>$\lt p^2 \gt = \hbar\sqrt{mk} (v + \frac{1}{2})$</li>
+                <li>$\lt T \gt = \lt \frac{p^2}{2m} \gt = \frac{\hbar}{2} \sqrt{\frac{k}{m}}(v+\frac{1}{2})$</li>
+                <li>$\lt V \gt = \frac{\hbar}{2} \sqrt{\frac{k}{m}}(v+\frac{1}{2})$ (the same thing)</li>
+                <li>$\lt E \gt = \lt T \gt + \lt V \gt = \hbar \sqrt{\frac{k}{m}}(v+\frac{1}{2})$</li>
+            </ul>
+{% endblock contents %}

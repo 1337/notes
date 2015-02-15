@@ -1,0 +1,30 @@
+{% extends "html/notes/notes_template.html" %}
+
+{% block contents %}
+    <h1>CHEM 356 Notes</h1>
+    
+    <h2>Basic mathematics</h2>
+        <ul>
+            <li>Energy of a photon: $E = h\nu 
+                                       = h\frac{c}{\lambda} 
+                                       = hc\tilde{\nu}_{[m]}$</li>
+            <li>Black body radiation: $\lambda_{max} \cdot T = \frac{hc}{4.965 k_B}$</li>
+            <li>De Broglie wavelength: $\lambda = \frac{h}{p}$</li>
+        </ul>
+    
+        <h3>Bra|c|ket notation</h3>
+            <ul>
+                <li>$\lt \Psi | \Psi \gt = \int^{\infty}_{-\infty} \Psi^{*} \Psi d\tau$</li>
+                <li>$\lt \Psi | \hat{A} | \Psi \gt = \int^{\infty}_{-\infty} \Psi^{*} \hat{A} \Psi d\tau
+                                                   = \int^{\infty}_{-\infty} \Psi^{*} a \Psi d\tau
+                                                   = a \int^{\infty}_{-\infty} \Psi^{*} \Psi d\tau$</li>
+            </ul>
+        
+        <h3>Expectation, Variance, and Standard Error</h3>
+            <ul>
+                <li>Expectation: $\lt x \gt = \int^{\infty}_{-\infty} x \Psi^{*} \Psi dx$</li>
+                <li>Something: $\lt x^2 \gt = \int^{\infty}_{-\infty} x^2 \Psi^{*} \Psi dx$</li>
+                <li>Variance: $\sigma^2 = \lt x^2 \gt - (\lt x \gt)^2$</li>
+                <li>Standard Error: $\sigma = \sqrt{\lt x^2 \gt - (\lt x \gt)^2}$</li>
+            </ul>
+{% endblock contents %}

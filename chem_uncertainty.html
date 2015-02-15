@@ -1,0 +1,35 @@
+{% extends "html/notes/notes_template.html" %}
+
+{% block contents %}
+    <h1>CHEM 356 Notes</h1>
+    
+    <h2>Heisenburg Uncertainty Principle</h2>
+        <p>The Heisenburg uncertainty principle states that 
+            $\Delta x \Delta p_x \geq h$ for a particle in a 1D box.</p>
+
+        <div class="math">$\begin{eqnarray*}
+                    p_x &=& \sqrt{2mE} \\
+                        &=& \sqrt{2m(\frac{n^2 h^2}{8mL^2})} \\
+                        &=& \pm \frac{nh}{2L} \\
+             \Delta p_x &=& 2 \frac{nh}{2L} \\
+                        &=& \frac{nh}{L}\\
+            \end{eqnarray*}$</div>
+        <p>You'll notice that the energy equation above had an extra $L$. 
+            I have no idea why.</p>
+
+        <p>Because the box is exactly $L$ wide, the max error for $x$ is $L$.</p>
+        <div class="math">$\Delta x = L$</div>
+        
+        <p>This gives you:</p>
+        <div class="math">$\begin{eqnarray*}
+             \Delta x \Delta p_x &=& L \cdot \frac{nh}{L} \\
+                                 &=& nh \\
+            \end{eqnarray*}$</div>
+        <p>(the minimum error is therefore just $h$.)</p>
+
+    <h2>Generalized Uncertainty Principle</h2>
+        <p>Using the <a class="dt">Schwarz Inequality</a>, the minimum error
+            of any two observations</p>
+        <div class="math">$(\Delta A)^2 (\Delta B)^2 \geq \frac{1}{4} | \lt [A,B] \gt |^2$</div>
+        <p><b>What this means? I'm not sure.</b></p>
+{% endblock contents %}

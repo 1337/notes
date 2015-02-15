@@ -1,0 +1,24 @@
+{% extends "html/notes/notes_template.html" %}
+
+{% block contents %}
+    <h1>CHEM 356 Notes</h1>
+    
+    <h2>Operators and Commutators</h2>
+        <p><b>Operators</b> are things with a little hat on top (e.g. $\hat{H}$).
+            They operate on your variable.</p>
+            
+        <h3>Example</h3>
+            <p>If $\hat{A} = [\frac{d}{dx} + x]$, then</p>
+            <div class="math">$\begin{eqnarray*}
+                \hat{A}f &=& [\frac{d}{dx} + x]f \\
+                         &=& \frac{d}{dx}f + xf \\
+                         &=& f' + xf \\
+            \end{eqnarray*}$</div>
+            
+        <p><b>Commutators</b> are groups of two operators. If they have zero
+            difference when their order is swapped, then we say the two 
+            operators commute.</p>
+            <div class="math">$
+                [\hat{A}, \hat{B}]f = \hat{A}\hat{B}f - \hat{B}\hat{A}f
+            $</div>
+{% endblock contents %}

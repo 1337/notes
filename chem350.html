@@ -1,0 +1,372 @@
+{% extends "html/notes/notes_template.html" %}
+
+{% block contents %}
+    <h1>CHEM 350 Notes</h1>
+    
+    <h2>Some math</h2>
+        <p>Stirling approximation <span class="math">\ln{N!}=N \ln{N}-N=N(\ln{N}-1)=N\ \ln{N\over e}</span></p>
+        <p>Variance of property <span class="math">\nu</span></p>
+        <div class="math">
+        \begin{array}{rcl}
+        \langle(\Delta\nu)^2\rangle & = & \langle(\nu-\langle \nu\rangle)^2\rangle \\
+                                    & = & \langle \nu^2-2\nu\langle\nu\rangle+\langle \nu\rangle^2\rangle \\
+                                    & = & \langle\nu\rangle^2-2\langle\nu\rangle\langle\nu\rangle+\langle\nu^2\rangle\langle1\rangle \\
+                                    & = & \langle\nu^2 \rangle-\langle\nu\rangle^2 \\
+        \end{array}</div>
+        <p>Standard deviation <span class="math">\sigma=\sqrt{\langle\nu^2\rangle-\langle\nu\rangle^2}</span></p>
+    
+    <h2>Probabilityï¼Œ Boltzmann Distribution and Partition Functions</h2>
+        <p>All accessible energy levels in a box: <span class="math">\varepsilon</span></p>
+        <div class="math">
+        \varepsilon(n_x,n_y,n_z )=\frac{h^2}{8m}(\frac{n_x^2}{L_x^2}+\frac{n_y^2}{L_y^2}+\frac{n_z^2}{L_z^2})
+        </div>
+        <p>Let's name a variable called <span class="math">K_{box}</span>, and 
+            <span class="math">\varepsilon_i</span> be one of the accessible energy levels in a box
+            with total enrgy <span class="math">E</span></p>
+        <div class="math">K_{box}=\frac{\mathbb{C}u}{mL^2}</div>
+        <div class="math">\varepsilon_i=\frac{h^2}{8mL^2}\cdot n^2 = K_{box}\cdot n^2</div>
+        <p>Occupation number n_i  or a_i:  the number of particles in energy level \varepsilon_i.</p>
+        <p>Conservation of energy means that <span class="math">E_{tot}=\sum_{all\ i} \varepsilon_i\ a_i</span>
+            and <span class="math">\delta E_{tot}=\sum_{all\ i}\varepsilon_i \delta a_i</span></p>
+        <p>Conservation of mass <span class="math">N=\sum{n_i} = \sum{a_i}</span></p>
+        <p>Permutation <span class="math">C(N,n)=\frac{N!}{n!(N-n)!}</span></p>
+        <p>Permutation <span class="math">P(N,n)=C(N,n)\times p^n p^{N-n}</span></p>
+        <h3>Term symbol</h3>
+            <div class="math">
+                {}^{2s+1}\{\Sigma \Pi \Delta\}_J  
+            </div>
+
+    <h2>Ensembles,molecular partition functions, partition functions for different degrees of freedom (Chapter 14)</h2>
+        <p>Average population in level 0 = <span class="math">\prod_{all\ i}{n_0 P_D^0}</span></p>
+        <p><span class="math">P_D^0</span> means 'probability for this distribution to be in level 0'.</p>
+        <p>Partition function <span class="math">q=\sum_{all\ states\ i}e^{-\beta\varepsilon_i}</span></p>
+        <p>Partition function <span class="math">q=\sum_{degerate\ levels\ j}g_i\ e^{-\beta\varepsilon_i}</span>  (if degenerate)</p>
+        <p><span class="math">\beta= \frac{1}{k_BT}</span>
+        (inverse of temperature:heat flows from small <span class="math">\beta</span> to large <span class="math">\beta</span>)</p>
+        <p><span class="math">\alpha=\ln{\frac{N}{q}}</span>,used as <span class="math">e^\alpha=\frac{N}{q}</span>.</p>
+        
+        <h3>Boltzmann Distribution 1 (where alpha came from)</h3>
+        <div class="math">
+            \begin{array}{rcl}
+                            N & = & \sum_{i} a_i \\
+                              & = & \sum_{i} e^\alpha e^{-\beta\varepsilon_i} \\
+                              & = & e^\alpha \sum_{i} e^{-\beta\varepsilon_i} \\
+            Proving\ \alpha:  & = & \frac{N}{q} \sum_{i} e^{-\beta\varepsilon_i} \\
+                            1 & = & \frac{1}{q} \sum_{i} e^{-\beta\varepsilon_i} \\
+                            q & = & \sum_{i} e^{-\beta\varepsilon_i}
+            \end{array}
+        </div>
+        <h3>Boltzmann Distribution 2</h3>
+        <div class="math">
+            \begin{array}{rcl}
+            a_i & = & e^\alpha e^{-\beta\varepsilon_i} \\
+                & = & \frac{N}{q}e^{-\beta\varepsilon_i} \\
+                & = & \frac{N\ e^{-\beta\varepsilon_i}} {q} \\
+                & = & \frac{N\ e^{-\beta\varepsilon_i}} {\sum_{all\ states\ i}e^{-\beta\varepsilon_i}}
+            \end{array}
+        </div>
+        <p>Probability of finding a particle in state <span class="math">i</span></p>
+        <div class="math">
+            \begin{array}{rcl}
+            P_i & = & \frac{a_i}{N} \\
+                & = & \frac{e^\alpha e^{-\beta\varepsilon_i}}{N} \\
+                & = & \frac{N}{N} \frac{e^{-\beta\varepsilon_i}}{q} \\
+                & = & \frac{e^{-\beta\varepsilon_i}}{q} \\
+        and\ \frac{\delta}{\delta\beta} e^{-\beta\varepsilon_i} & = & \varepsilon_i e^{-\beta\varepsilon_i}\ (obviously)
+            \end{array}
+        </div>
+        
+        <h3>Components of q</h3>
+            <p>Thermal DeBroglie wavelength <span class="math"> \Lambda=\sqrt{\frac{h^2}{2\pi m k_B T}} = \sqrt{\frac{304.7811}{mT}}[â„«]</span></p>
+            <div class="math">q_{trans}=\frac{V}{\Lambda^3}</div>
+            <p>Vibrational degrees of freedom = <span class="math">3N-5</span> (linear) or <span class="math">3N-6</span> (non-linear)</p>
+            <div class="math">
+                \begin{array}{rcl}
+                \Theta_{vib}^i & = & \frac{(\Delta G_{1\over 2})}{k_B} \\
+                               & = & \frac{G_{v=i+1}-G_{v=i}}{k_B} \\
+                               & = & \frac{\omega_e-2\omega_e x_e}{k_B}
+                \end{array}
+            </div>
+            <div class="math">
+                \begin{array}{rcl}
+                    q_{vib} & = & \frac {e^{-\beta \omega_e/2}}
+                                        {1-e^{-\beta\omega_e}} \\
+                            & = & e^{\frac{D_0}{k_B T}} \frac{1}{1-e^{-\Theta_{vib}/T}} (for\ zero\ energy\ =\ ZPE) \\
+                            & = & \frac{1}{1-e^{-\Theta_{vib}/T}} (for\ zero\ energy\ =\ [u=0])
+                \end{array}
+            </div>
+            <p>Reduced mass: <span class="math">\mu= \frac{m_1 m_2}{m_1+m_2}</span></p>
+            <p>Moment of inertia:<span class="math">I=\mu r^2</span> (diatomic)</span>
+               or<span class="math">\sum_{atoms\ i} m_i r_i^2</span> (polyatomic)</p>
+            <p>A molecule with <span class="math"> I^A=I^B=I^C</span> =spherical top.</p>
+            <p><span class="math">B_0=B_{v=0}=B_v=B_e -\frac{1}{2}\alpha_e</span>
+                (I think)
+            </p>
+            <div class="math">
+                \Theta_{rot}=\frac{B_0}{k_B} = \frac{(B_e -\frac{1}{2}\alpha_e)}{k_B} 
+            </div>
+            <p>Symmetry number <span class="math">\sigma</span>
+                = number of distinct but equivalent configurations which can be achieved by rotating</p>
+            <p><span class="math">\sigma=1</span> for HCN (rotate X),2 for OCO(rotate X,Y)</p>
+            <div class="math">
+                \begin{array}{rcl}
+                \varepsilon_{rot} & = & F(J) \\
+                                  & = & B_v (J(J+1)) \\
+                                  & = & \frac{\hbar^2}{2\mu} \langle\frac{1}{r^2}\rangle_v (J(J+1))
+                \end{array}
+            </div>
+            <p><span class="math">q_{rot}=\frac{T}{\sigma\Theta_{rot}}</span> (linear)
+               <span class="math">=\frac{\sqrt{\pi}}{\sigma}
+                                    \sqrt{\frac{T^3}{\Theta_{rot}^A \Theta_{rot}^B \Theta_{rot}^V}}</span> (non-linear)
+               <span class="math">=\frac{T}{2\Theta_{rot}}</span> (polyatomic)</p>
+                    
+            <p>
+                <span class="math">q_{nuc}=g_{nuc}</span> (I think) = <span class="math">\prod_{atoms\ i} 2I_i+1</span>(find I on data sheet)
+            </p>
+            <p><span class="math">q_{elec}</span>
+                for an atom = <span class="math">q_elec (({}^5)\Lambda_J)=2J+1</span> (I think)</p>
+            <h4>Summary</h4>
+            <div class="math">
+                \begin{array}{rcl}
+                q_{tot} & = & q_{trans}(T)\times q_{nuc}\times q_{elec} \times q_{vib} (T) \times q_{rot} (T) \\
+                        & = & [\frac{V}{\Lambda^3} \times 
+                              [\prod_{atoms\ i} (2I_i+1)] \times 
+                              [2J+1] \times 
+                              [\frac{1}{1-e^{-\Theta_{vib}/T}}] \times 
+                              [\frac{T}{\sigma\Theta_{rot}}]
+                \end{array}
+            </div>
+    <h2>Statistical thermodynamics, ensemble averages (Chapter15)</h2>
+        <p><span class="math">W</span>, the statistical weight, equals to the number of distinct microstates.</p>
+        <div class="math">
+            \begin{array}{rcl}
+            W                               & = & \frac{N!}{\prod_{all\ i}n_{i}!}=\frac{N!}{\prod_{all\ i}a_{i}!} \\
+            \frac{\delta\ln{W}}{\delta a_i} & = & \frac{\delta}{\delta a_i}\ln(\frac{N!}{\prod_{all\ i}a_{i}!}) \\
+                                            & = & \frac{\delta}{\delta a_{i}}(\ln{N!}-\ln(\prod_{all\ i}a_{i}!)) \\
+                                            & = & -\frac{\delta \ln{a_{i}!}}{\delta a_{i}} \\
+                                            & = & -\ln{a_i}
+            \end{array}
+        </div>
+        <p></p>
+        <div class="math">
+            W_{mp}=W_{max}=\frac{N!}{(N/2)!^2} \rightarrow \delta W_{mp}=\beta \delta E_{tot}
+        </div>
+        <div class="math">
+            \beta=\frac{\delta W_{mp}}{\delta E_{tot}}
+        </div>
+        <p>Probability for encountering this configuration: <span class="math">P_D = \frac{W_D}{W_{tot}}</span>
+        (subscript D in <span class="math">W_D</span> means "statistical weight of this <b>D</b>istribution" )</p>
+        <p>Ensemble: collection of distinct systems obeying the same macroscopic conservation law.</p>        
+        <p><b>Ensemble average</b> (of any property '<span class="math">\nu</span>'):</p>
+        <div class="math">
+            \begin{array}{rcl}
+            \langle\nu\rangle & = & \frac{1}{N}(n_1\nu_1+n_2\nu_2+...) \\
+                             & = & \sum_i P_i\nu_i
+            \end{array}
+        </div>
+        <p>If for energy,</p>
+        <div class="math">
+            \begin{array}{rcl}
+                \varepsilon & = & \sum_i P_i \varepsilon_i \\
+                            & = & \sum_i \frac{e^{-\beta\varepsilon_i}}{q} \varepsilon_i \\
+                            & = & \frac{1}{q} \sum_i e^{-\beta\varepsilon_i} \varepsilon_i \\
+                            & = & \frac{1}{q} \sum_i (\frac{\delta e^{-\beta\varepsilon_i}}{\delta\beta}) \\
+                            & = & ... \\
+                            & = & -\frac{\delta \ln{q}}{\delta\beta}
+            \end{array}
+        </div>
+        
+        <h3>Total partition function</h3>
+        <p><span class="math">Q_{tot}=q^N</span> (distinguishable particles)</p>
+        <p><span class="math">Q_{tot}=\frac{q^N}{N!}</span> (indistinguishable particles)</p>
+        <p>For a mixture, <span class="math">Q_{tot} = \prod_i Q_{ {tot}_i}</span></p>
+        
+    <h2>Kinetic Theory of Gases, Maxwellâ€Boltzmann distribution of speeds, collisions (Chapter 16)</h2>
+        <p>Bosons (even number of nucleons,can be in the same state)</p>
+        <p>Fermions (odd number of nucleons)</p>
+        <div class="math">U = -\frac{\delta lnQ}{\delta\beta} = k_B T^2 \frac{\delta lnQ}{\delta T}</div>
+        <div class="math">U_{trans}=\frac{3}{2} Nk_B T</div>
+        <div class="math">A = U - TS</div>
+        <div class="math">G = H - TS</div>
+        <div class="math">P = (\frac{\delta A}{\delta V})_{N,T} = ???</div>
+        <div class="math">
+            \begin{array}{rcl}
+                S & = & k_B \ln{W_{mp}} \\
+                  & = & k_B \ln{\frac{N!}{\prod_{all\ i}{a_i}!}} \\
+                  & = & k_B (\ln{N!}-\ln{(\prod_{all\ i} {a_i}!})) \\
+                  & = & k_B (N\ln{N}-N-\sum a_i \ln{a_i} + \sum a_i) \\
+                  & = & k_B (N\ln{N}  -\sum a_i \ln{a_i}           ) \\
+                  & = & k_B (\sum a_i \ln{N}-\sum a_i \ln{a_i}) \\
+                  & = & k_B \sum a_i (\ln{N}-\ln{a_i}) \\
+                  & = & k_B \sum a_i (\ln{\frac{N}{a_i}}) \\
+                  & = & k_B \sum \frac{N e^{-\beta\varepsilon_i}}
+                                      {q}
+                            \ln{\frac{N}{\frac{N e^{-\beta\varepsilon_i}}
+                                      {q}}} \\
+                  & = & k_B \sum (\ln{q} + ln{e^{\beta\varepsilon_i}}) \\
+                  & = & k_B \sum (\ln{q}+ \beta\varepsilon_i) \\
+                  
+                  & = & k_B \ln{q} \sum a_i + k_B \beta\sum (\varepsilon_i a_i) \\
+                  & = & k_B \ln{q} \sum a_i + k_B \frac{1}{k_B T} \sum (\varepsilon_i a_i) \\
+                  & = & k_B \ln{q} N + k_B \frac{1}{k_B T} U \\
+                  & = & k_B N \ln{q} + \frac{U}{T} \\
+                  & = & k_B \ln{q^N} + \frac{U}{T} \\
+                  & = & k_B \ln{Q} + \frac{U}{T}
+            \end{array}
+        </div>
+        <p>Therefore, <span class="math">S = k_B \ln{Q} + \frac{U}{T}</span>
+            (for distinguishable particles;assumed <span class="math">Q=q^N</span>)</p>
+        <div class="math">
+            \begin{array}{rcl}
+                S & = & k_B \ln{(q_{trans})} + \frac{3}{2} N k_B-k_B (\ln{N!}) \\
+                  & = & k_B \ln{(q_{trans})} + \frac{3}{2} N k_B-k_B (N \ln{N}-N) \\
+                  & = & \frac{3}{2} N k_B + N k_B \ln{\frac{V}{\Lambda^3}}-N k_B \ln{N}+N k_B \\
+                  & = & \frac{5}{2} N k_B + N k_B \ln{(\frac{V}{\Lambda^3 N})} \\
+                  & = & N k_B (\frac{5}{2} + \ln{(\frac{V}{\Lambda^3 N})}) \\
+                  & = & N k_B \ln{(\frac{e^{\frac{5}
+                                                 {2}}V}
+                                        {\Lambda^3 N})}
+            \end{array}            
+        </div>
+        <h3>Sacker-Tetrode Equation</h3>
+        <div class="math">S=Nk_B\ln{(\frac{e^{\frac{5}{2}}V}{\Lambda^3 N})}</div>
+        <h3>Sacker-Tetrode for IG</h3>
+            <div class="math">
+                \begin{array}{rcl}
+                    S & = & N k_B \ln{(\frac{e^{\frac{5}
+                                                     {2}}V}
+                                            {\Lambda^3 N})} \\
+                      & = & nR\ln{(\frac{e^{\frac{5}{2}}RT}{\Lambda^3N_AP})} \\
+                      & = & \frac{5}{2}nR + nR\ln{V} + \frac{3}{2}nR\ln{T} - nR\ln{(const)} \\
+                      & = & ... \\
+                      & = & \frac{\delta}{\delta T}(k_BT\ln{Q})
+                \end{array}            
+            </div>
+        <h3>Calculations involving <span class="math">\Delta S</span></h3>
+        <div class="math">
+            \begin{array}{rclcll}
+            \Delta S & = & S_2 - S_1 & = & S_2(V_2) - S_2(V_1)     & (constant\ temp) \\
+                     &   &           & = & nR\ln(V_2) - nR\ln(V_1) & \\
+                     &   &           & = & nR\ln(\frac{V_2}{V_1})  & \\
+            \Delta S & = & S_2 - S_1 & = & S_2(T_2) - S_2(T_1)     & (constant\ volume) \\
+                     &   &           & = & nR\ln(T_2) - nR\ln(T_1) & \\
+                     &   &           & = & \frac{3}{2} nR\ln(\frac{T_2}{T_1})  & \\                           
+            \Delta S & = & S_2 - S_1 & = & \frac{5}{2} nR\ln(\frac{P_1}{P_2})  & (constant\ pressure)
+            \end{array}            
+        </div>
+
+    <h2>Transport properties (Chapter 17)</h2>
+
+    <h2>Chemical kinetics, rate laws, collision and TS theories (Chapter 18)</h2>
+        <h3>Equilibrium constants - chemical potential and molar Gibbs energy</h3>
+            <p>Let <span class="math">N = N_A</span>.</p>
+            <p>Let <span class="math">\bar{G}_\alpha</span> be the chemical postential.</p>
+            <div class="math">
+                \begin{array}{rcl}
+                    \mu_\alpha & = & -N_A k_B T \ln{\frac{q_\alpha e}{N_A}} + PV \\
+                               & = & -N_A k_B T \ln{\frac{q_\alpha}{N_A}} -N_A k_B T \ln{e} + N_A k_B T \\
+                               & = & -N_A k_B T \ln{\frac{q_\alpha}{N_A}} \\                                   
+                \end{array}            
+            </div>
+            <p>Now set a reference pressure <span class="math">P^0</span></p>               
+            <div class="math">
+                \begin{array}{rcl}
+                    \frac{q_{\alpha}}{N_A} & = & q_{trans}^{\alpha} \times q_{int}^{\alpha} \\
+                                           & = & [\frac{V}{N_A\Lambda_{\alpha}^3}]\times q_{int}^{\alpha} \times [\frac{P^0}{P^0}] \\
+                                           & = & (\frac{1}{N_A\Lambda_{\alpha}^3}\frac{RT}{N_AP^0})(\frac{P_0}{P_{\alpha}}) \\
+                                           & = & \frac{q_{\alpha}^0}{N_A}\frac{P_0}{P_{\alpha}}
+                \end{array}            
+            </div>
+            <p>where <span class="math">q_{\alpha}^0</span> is the q for species 
+                <span class="math">\alpha</span> under standard pressure.</p>
+            <h4>Molar Gibbs Energy</h4>
+                <p>For <span class="math">n_bB + n_cC \rightleftharpoons n_dD + n_eE</span></p>
+                <div class="math">\mu_x = -RT\ln{\frac{q^x}{N_A}}</div>
+                <div class="math">
+                \begin{array}{rcl}
+                    \Delta G & = & n_d\mu_d + n_e\mu_e - n_b\mu_b - n_c\mu_c \\
+                             & = & -RT[n_d\ln{(...)} + n_e\ln{(...)} - n_b\ln{(...)} - n_c\ln{(...)}] \\
+                             & = & -RT\ln{\bigl(\frac{ {(\frac{q_d}{N_A})}^{n_d}{(\frac{q_e}{N_A})}^{n_e}}
+                                                { {(\frac{q_b}{N_A})}^{n_b}{(\frac{q_c}{N_A})}^{n_c}}\bigr)} \\
+                          or & = & -RT\ln{(\frac{\prod_{products\ i}(\frac{q_i}{N_A})^{n_i}}
+                                                {\prod_{reactants\ j}(\frac{q_j}{N_A})^{n_j}})}
+                \end{array}                                
+                </div>
+                <p>Notice that at equilibrium, <span class="math">\Delta G = -RT \ln{(1)} = 0</span>, so 
+                    <span class="math">\frac{\prod_{products\ i}(\frac{q_i}{N_A})^{n_i}}
+                                                {\prod_{reactants\ j}(\frac{q_j}{N_A})^{n_j}}</span>
+                    must be 1 at equilibrium.</p>
+                <p>Convert that using the conversion factor</p>
+                <div class="math">\frac{q_\alpha}{N_A} = \frac{q_\alpha^0}{N_A}\frac{P_0}{P_\alpha}</div>
+                <div class="math">
+                    \prod_{products} (\frac{q_i}{N_A})^{n_i} \rightarrow 
+                    \prod_{products} (\frac{q_i^0}{N_A})^{n_i} (\frac{P_0}{P_i})^{n_i}
+                </div>
+                <p>By isolating these pressure terms and picking 
+                    <span class="math">P^0 = 1 bar/atm</span>, we get (for the case of 
+                    <span class="math">n_bB + n_cC \rightleftharpoons n_dD + n_eE</span>)</p>
+                <div class="math">
+                    \frac{(\frac{P_0}{P_d})^{n_d}(\frac{P_0}{P_e})^{n_e}}
+                         {(\frac{P_0}{P_b})^{n_b}(\frac{P_0}{P_c})^{n_c}}
+                  = \frac{(P_d)^{n_d}(P_e)^{n_e}}
+                         {(P_b)^{n_b}(P_c)^{n_c}} = K_p
+                </div>
+        
+        <h3>Rate Laws</h3>
+            <h4>Zeroth order rate law:</h4>
+                <p>Graph of [A] vs t is linear.</p>
+                <div class="math">
+                    Rate = -\frac{d[A]}{dt}=k[A]^0=k\ (constant)
+                </div>
+                <p>or</p>
+                <div class="math">\frac{d[A]}{dt}=-k</div>
+                <p>Integration gives</p>
+                <div class="math">[A]_t=-kt+C</div>
+                <p>At <span class="math">t=0</span>,</p>
+                <div class="math">[A]_0=-k(0)+C=C \rightarrow C=[A]_0</div>
+                <p>so</p>
+                <div class="math">[A]_t=[A]_0-kt</div>
+
+            <h4>First order rate law:</h4>
+                <p>Graph of ln[A] vs t is linear.</p>
+                <div class="math">
+                    Rate = -\frac{d[A]}{dt}=k[A]^1=k[A] \ (see\ how\ it\ depends\ on\ A?)
+                </div>
+                <p>or</p>
+                <div class="math">\frac{d[A]}{dt}=-k[A]</div>
+                <p>To integrate, you need to rearrange.</p>
+                <div class="math">\frac{dy}{dx}=-ky\rightarrow\frac{dy}{y}=-kdx</div>
+                <div class="math">\int{\frac{dy}{y}}=\ln{y}=-kt+C\rightarrow\ln{[A]_t}=-kt+C</div>
+                <p>At <span class="math">t=0</span>,</p>
+                <div class="math">[A]_0=-k(0)+C=C</div>
+                <p>so</p>
+                <div class="math">ln{[A]_t}=ln{[A]_0}-kt</div>
+                <p>or</p>
+                <div class="math">ln{[A]_t}-ln{[A]_0}=ln{\frac{[A]_t}{[A]_0}}=-kt</div>
+                <p>OR</p>
+                <div class="math">[A]_t=[A]_0 e^{-kt}</div>
+                <h5>Important</h5>
+                    <p>Only in first order rate laws are half lives constant:
+                    <span class="math">t_{\frac{1}{2}}=\frac{\ln{2}}{k}</span>
+                    </p>
+                
+            <h4>Second order rate law:</h4>    
+                <p>Graph of 1/[A] vs t is linear.</p>
+                <div class="math">Rate = -\frac{d[A]}{dt}=k[A]^1=k[A]^2</div>
+                <p>or</p>
+                <div class="math">\frac{d[A]}{dt}=-k[A]^2</div>
+
+                <p>To integrate, you need to rearrange.</p>
+                <div class="math">\frac{dy}{dx}=-ky^2\rightarrow\frac{dy}{y^2}=-kdx</div>
+                <div class="math">\int{\frac{dy}{y^2}}=\int{-kdx}</div>
+                <div class="math">\frac{1}{y}=-kt+C\rightarrow\frac{1}{[A]_t}=-kt+C</div>
+                <p>At <span class="math">t=0</span>,</p>
+                <div class="math">\frac{1}{[A]_0}=-k_0+C\rightarrow C=-\frac{1}{[A]_0}</div>
+                <p>so</p>
+                <div class="math">\frac{1}{[A]_t}-\frac{1}{[A]_0}=kt</div>
+            
+            <h4>Order n rate law:</h4>
+                <div class="math">
+                    \frac{1}{ {[A]_t}^{n-1}}-\frac{1}{ {[A]_0}^{n-1}}=(n-1)kt
+                </div>
+{% endblock contents %}

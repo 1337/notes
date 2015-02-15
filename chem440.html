@@ -1,0 +1,479 @@
+{% extends "html/notes/notes_template.html" %}
+
+{% block contents %}
+    <h1>CHEM 440 <a class="dt" href="">Molecular Dynamics</a> and its
+        Applications</h1>
+
+    Entropy: spontaneous vs average?
+
+    Potential wells: harmonic, anharmonic (Morse)
+
+    At low temperatures, systems get locked in a few quasi-harmonic
+    oscillators. Low temp = low KE. All you do is jiggle
+
+    <h2>Theory</h2>
+
+    <h3>Integrators / Integration methods</h3>
+    <h4 class="dfn">Verlet method</h4>
+    <div class="math">$r(t+\Delta t) = 2r(t) - r(t - \Delta t) + \Delta t^2
+                      a(t)$
+    </div>
+    <p>The <a class="dt">Verlet method</a> does not depend on
+       velocities (hence the name). A</p>
+    <h4 class="dfn">Velocity-Verlet method</h4>
+    <div class="math">$r(t + \Delta t) = r(t) + v(t) \Delta t + \frac{\Delta
+                      t^2}{2} a(t)$
+    </div>
+    <div class="math">$v(t + \Delta \frac{t^2}{2}) = v(t) + a(t)\frac{\Delta
+                      t}{2}$
+    </div>
+    <p>The parameter $t + \Delta \frac{t^2}{2}$ is defined for "practical
+       reasons".</p>
+    <h5>Storage requirements</h5>
+    <p>A "double" float for each in 3N * [positions, velocities, forces] =
+       72N bytes</p>
+
+    <h4><span class="dfn">Conditions</span> /
+        <span class="dfn">Constraint</span>s</h4>
+    <p>Constraints are added primarily to freeze out high-frequency bond
+       vibrations. This is useful because
+        <b>bonds vibrating faster than $\frac{1}{\Delta t}$
+           can be incorrectly sampled, affecting results.</b></p>
+    <p><span class="dfn">High-frequncy bond</span>s are intrinsically quantum,
+                                                  we don't want to solve them,
+                                                  and
+        <b>we replace them with the average of their wavefunctions</b>.</p>
+    <p>Advantage: if you freeze out high-frequency bonds, larger
+        <a class="dt">time step</a>s can be taken, which saves time.
+    </p>
+
+    <h4>Monte Carlo</h4>
+    <p>MC does not assume
+        <a class="dt" href="ergodic hypothesis">ergodicity</a>. MC
+       calculates averages by intgration rather than ensemble averages.</p>
+    <h5>Importance sampling</h5>
+    <p>Realise that the most probable thing will be sampled most often. That
+       means, or all intents and purposes, we will be sampling only a handful
+       of radii.</p>
+    <h5>Sampling method: <b class="dfn">Markov Chain of States</b> (MCS)</h5>
+    <div>The MCS satisfies <a class="dt">constraint</a>s:
+        <ul>
+            <li>The outcome of each trial depends only on the preceding
+                trial.
+            </li>
+            <li>Each trial depends on a finite set of possible outcoems, e.g.
+                coin: "up" or "down"
+            </li>
+        </ul>
+         What's cool about the MCS is that the
+        <b>final state does not depend on the initial state at all</b>.
+    </div>
+    <div class="math">$
+                      \pi = \begin{bmatrix}
+                      \tau_m \\
+                      \tau_n
+                      \end{bmatrix}
+                      = \begin{bmatrix}
+                      0.6 & 0.4 \\
+                      0.3 & 0.7
+                      \end{bmatrix}
+                      $
+    </div>
+    <p>And then you have a state $\rho$, with initial state $\rho^0$. <br>
+       You can multiply $\rho^0$ by $\pi$ to get $\rho^1$:</p>
+    <div class="math">
+        $\rho^0 \pi = \rho^1$
+    </div>
+    <div class="math">
+        $\rho^1 \pi = \rho^2$
+    </div>
+    <p>Therefore,</p>
+    <div class="math">
+        $\rho^x = \rho^0 \pi^x \approx \rho$
+    </div>
+    <p>Oddly enough, $\rho \pi$ converges to $\rho$. At that point, $\rho$ is
+       known as the <b class="dfn">Stochastic Matrix</b>.
+       This <a class="dt" href="">stochastic matrix</a> is also the
+       transition matrix for an irreducible Markov chain.
+       And with an irreducible Markov chain,
+        <b>every state can eventually be reached from another state</b>,
+       which is strikingly similar to the <a class="dt">ergodic hypothesis</a>.
+    </p>
+    <p>Therefore, the initial $\rho$ can be anything and the whole space will
+       still be travelled.</p>
+    <h5>Metropolis MC</h5>
+    <p>(2/7)</p>
+
+
+    <h3>Thermostats</h3>
+    <h4>Berensen thermostat</h4>
+    <p>Problem: weak coupling to a heat bath.</p>
+
+    <h4>Nos&eacute; thermostat</h4>
+    <p>"1 fs is always safe"</p>
+
+    <h3><span class="dfn">Force field</span>s</h3>
+    <p>Mathematical function for the energy of a molecular system as a function
+       of its geometry.</p><p>
+    The total energy of the <a class="dt">force field</a>
+    $E_{\textrm{total}}$ or $U(r)$ is the sum of
+    <a class="dt" href="Simple harmonic potential">simple harmonic forces</a>,
+    <a class="dt" href="morse potential">anharmonic terms</a>,
+    torsion forces, <a class="dt">Lennard-Jones potential</a>s, and
+    <a class="dt">Coulombic potential</a>s.</p>
+    <div class="math">
+        $U(r) = \sum_{\textrm{bonds}}{K_r(r-r_{\textrm{eq}})^2} +
+        \sum_{\textrm{bond angles}} K_\theta (\theta - \theta_{\textrm{eq}})^2
+        + \sum_{\textrm{dihedral torsion}}{\frac{V_n}{2}[1+\cos{(n\phi +
+        \gamma)}]} + \sum_{i \lt
+        j}^{vdW}{\frac{A_{ij}}{R_{ij}^{12}}-\frac{B_{ij}}{R_{ij}^{6}}} +
+        \sum_{i
+        \lt j
+        }{\frac{q_i q_j}{\epsilon R_{ij}}}$
+    </div>
+    <h4>Common force fields</h4>
+    <ul>
+        <li>AMBER</li>
+        <li>CHARMM</li>
+        <li>GROMOS</li>
+    </ul>
+    <p>Common force fields are non-polarizable, so no bonding reactions can be
+       simulated. They only simulate simple conformational changes.</p>
+
+    <h4>System in equilibrium</h4>
+    <p>Equilibrium is a property that depends only on state variables (N, V, T,
+       ...), not time. This is also the
+        <a class="dt">ergodic hypothesis</a>, where
+        <a class="dt">phase space</a>
+       average equals the time average. This allows us to get the equilibrium
+       without using infinite time.</p>
+    <h5><span class="dfn">Stochastic</span> approach, by Anderson</h5>
+    <p>In the <a class="dt" href=""></a>stochastic approach, the
+        <a class="dt" href="">heat bath</a> aka <a class="dt" href="">thermostat</a>
+       is a <b>random number generator</b>. Every so often, a particle is
+       chosen, and its velocity changed.
+    </p>
+    <h4>Random number generators</h4>
+    <ul>
+        <li>Between sampling intervals, the system evolves in an
+            <a class="dt" href="microcanonical ensemble">NVE</a>manner, but
+            the probability density that one obtains is canonical.
+        </li>
+        <li>We decide on the frequency of virtual collisions based on
+            the <a class="dt" href="">Poisson distribution</a>
+            with a mean distribution collision time. The collision rate
+            per particle
+            suggested by Anderson is the <a class="dt" href="">stochastic</a>
+            <a class="dt" href="">thermostat</a>:
+            $ \textrm{rate} =
+            \frac{\lambda_T}{\rho^{\frac{1}{3}}N^{\frac{1}{3}}} $
+            <ul>
+                <li>$\lambda_T$: thermal conductivity</li>
+                <li>$\rho^{\frac{1}{3}}$: a length (number density)</li>
+                <li>$N^{\frac{1}{3}}$: number</li>
+            </ul>
+        </li>
+        <li></li>
+    </ul>
+    <h4>Velocity scaling method for equilibration</h4>
+
+    <h4>Systematic thermostats</h4>
+    <p>Systematic thermostats do not do things at random.</p>
+    <h5>Extended system approach</h5>
+    <p>A bath is attached to the system with a <b>degree of freedom</b>
+       that diagrammatically looks like a string. This interaction provides
+       energy flow.
+    </p>
+    <h5>Nos&eacute;-Hoover thermostat</h5>
+
+    <h2>Properties and Structures</h2>
+    <h3>$g(r)$</h3>
+    <h4>Application (3/7)</h4>
+    <h4>$g(r)$ of liquids, solids, and interfaces (3/5)</h4>
+    <h4>Thermodynamics of $g(r)$ (3/7)</h4>
+    <h3>Number of neighbours, $n(r)$</h3>
+    <h4>Molecular liquids</h4>
+    <p>You need to take stacking methods and torsion angles into account.
+       (2/26)</p>
+    <h4>Associated liquids (hydrogen bonding)</h4>
+    <h3>Reversible work theorem</h3>
+    <h3>Chemical rate theory and Transition state theory (TST)</h3>
+    <h4>Rate constants</h4>
+
+    <h2>Dynamics</h2>
+    <h3>Onsager's regression hypothesis</h3>
+    <h4>Correlation function, $C(t)$</h4>
+    <h4>Velocity autocorrelation function, $C = \langle V(0) V(t) \rangle $
+        (3/21)</h4>
+    <h3>Fick's Law (3/26)</h3>
+    <h4>Microscopic connection</h4>
+    <h4>Conditional probability</h4>
+    <h3>True K values</h3>
+
+    <h2>Glossary</h2>
+    <dl lang="en">
+    <dt>Binning</dt>
+    <dd>Frequency distribution.</dd>
+
+    <dt>Boltzmann distribution</dt>
+    <dd>Probability $P_\nu = e^{- \beta E_\nu}$</dd>
+
+    <dt>Born-Oppenheimer approximation</dt>
+    <dd>The idea that if a proton is a thousand times heavier than an electron,
+        then the movement of the proton, as far as the electron can tell,
+        is roughly none. The electron thinks the proton is stationary.
+    </dd>
+
+    <dt>Canonical ensemble</dt>
+    <dd>N, V, T. Contains many <a class="dt">microcanonical ensemble</a>s
+        in a "heat bath". The energy of the heat bath is much larger than
+        the
+        <a class="dt">system</a>.
+    </dd>
+
+    <dt>Central limit theorem</dt>
+    <dd>In probability theory, the central limit theorem (CLT) states that,
+        given certain conditions, the mean of a sufficiently large number of
+        independent random variables, each with a well-defined mean and
+        well-defined variance, will be approximately normally distributed.
+        The central limit theorem has a number of variants. In its common form,
+        the random variables must be identically distributed.
+    </dd>
+
+    <dt>Classical mechanics</dt>
+    <dd><a class="dt">Lagrangian</a> set of equations of motion... variational
+                                     principle... (1/24)
+    </dd>
+
+    <dt>Closed system</dt>
+    <dd></dd>
+
+    <dt>Coulombic potential</dt>
+    <dd></dd>
+
+    <dt>Energy fluctuation</dt>
+    <dd>Deviation of total energy from the mean. $\delta E = E - \langle E
+        \rangle$.
+    </dd>
+
+    <dt>Ensemble</dt>
+    <dd></dd>
+
+    <dt>Ensemble average</dt>
+    <dd>$\langle G \rangle = G_{obs} = \sum_\nu {P_\nu G_\nu} $</dd>
+
+    <dt>Ergodic hypothesis</dt>
+    <dd>The idea that the <a class="dt">phase space</a> average of an <a
+            class="dt">ensemble</a> is the same as its time average (given
+        enough time).
+    </dd>
+
+    <dt>Entropy</dt>
+    <dd>$S = k_B \ln{\Omega}$, where $\Omega$ is the total number of
+        states. <br>
+        Entropy is additive because of the <a class="dt">log rule</a>.
+    </dd>
+
+    <dt>Equilibration</dt>
+    <dd>The initial "scrambling" of atoms before production. (1/29)</dd>
+
+    <dt>Force</dt>
+    <dd>Force is the negative gradient of the
+        <a class="dt" href="potential energy">potential</a>.
+    </dd>
+
+    <dt>Force field</dt>
+    <dd>Mathematical function for the energy of a molecular system as a
+        function of its geometry. Includes the
+        <a class="dt">Lennard-Jones potential</a> and the
+        <a class="dt">Coulombic potential</a>.
+    </dd>
+
+    <dt>Fundamental postulate</dt>
+    <dd></dd>
+
+    <dt>Hamiltonian</dt>
+    <dd>$\hat{H}(q, \dot{q}) = KE_{nuclei} + KE_{electrons} + V$ (as opposed to
+        the
+        <a class="dt" href="">lagrangian</a>)
+    </dd>
+
+    <dt>Heat capacity</dt>
+    <dd></dd>
+
+    <dt>Heisenberg uncertainty principle</dt>
+    <dd><a class="dt" href="position">Positions</a> and
+        <a class="dt" href="momentum">momenta</a> of
+                                                    a particle cannot be
+                                                    simultaneously defined with
+                                                    infinite accuracy. It is
+                                                    bound by
+                                                    $\sigma_q \sigma_p \ge
+                                                    \frac{h}{2}$.
+    </dd>
+
+    <dt>Kinetic energy</dt>
+    <dd>$KE = K = \sum_i^N{\frac{p_i^2}{2m_i}}$</dd>
+
+    <dt>Kinetic temperature</dt>
+    <dd>$\tau = \frac{2}{3} \frac{KE}{N k_B}$, where KE is the <a
+            class="dt">kinetic energy</a>. The average, $\langle \tau
+        \rangle$, is the
+        <a class="dt">temperature</a>, $T$.
+    </dd>
+
+    <dt>Lagrangian</dt>
+    <dd>$\hat{L}(q, \dot{q}) = KE - V$ (as opposed to the
+        <a class="dt" href="">hamiltonian</a>)
+    </dd>
+
+    <dt>Lambda transition</dt>
+    <dd></dd>
+
+    <dt>Lennard-Jones potential</dt>
+    <dd>Weak <a class="dt">van der Waals force</a>s between two molecules.
+    </dd>
+
+    <dt>Log rule</dt>
+    <dd>$\ln{ab} = \ln{a} + \ln{b}$</dd>
+
+    <dt>MC</dt>
+    <dd>Monte Carlo.</dd>
+
+    <dt>MD</dt>
+    <dd>See <a class="dt">Molecular Dynamics</a>.</dd>
+
+    <dt>Microcanonical ensemble</dt>
+    <dd>N, V, E ensembles are <a class="dt"
+                                 href="ergodic hypothesis">ergodic</a>.
+    </dd>
+
+    <dt>Molecular Dynamics</dt>
+    <dd>Study of motion of atoms and molecules under a set of <a
+            class="dt">conditions</a>, which, in our case, are the known laws
+        of nature that we put into the system. <a class="dt">MD</a> is <a
+                class="dt" href="classical mechanics">classical</a>.
+    </dd>
+
+    <dt>Momentum</dt>
+    <dd>mass times velocity, the time detivative of <a class="dt">position</a>
+    </dd>
+
+    <dt>Morse potential</dt>
+    <dd class="math">$\sum_{\textrm{bond angles}} K_\theta (\theta -
+                     \theta_{\textrm{eq}})^2$
+    </dd>
+
+    <dt>Normalisation</dt>
+    <dd>Dividing an <a class="dt">observable</a> by the
+        <a class="dt">partition function</a>.
+    </dd>
+
+    <dt>Observable</dt>
+    <dd>A classical or
+        <a class="dt" href="quantum mechanics">quantum mechanic</a>
+        thing that you can measure.
+    </dd>
+
+    <dt>Open system</dt>
+    <dd>A <a class="dt">system</a> with no boundaries.</dd>
+
+    <dt>Partition function</dt>
+    <dd>Sum of all partitions; used for <a class="dt">normalisation</a>.
+        For $P_\nu = e^{- \beta E_\nu}$, the partition function would be
+        $\sum_\nu{e^{- \beta E_\nu}}$.
+    </dd>
+
+    <dt>Periodic system</dt>
+    <dd>A <a class="dt">closed system</a> subject to
+        <a class="dt">periodic conditions</a>.
+    </dd>
+
+    <dt>Periodic conditions</dt>
+    <dd>Conditions are identical on the opposite end. If a molecule travels
+        beyond the boundary of the box, it re-appears on the other end.
+    </dd>
+
+    <dt>Phase space</dt>
+    <dd><a class="dt">Position</a> and <a class="dt">momentum</a></dd>
+
+    <dt>Potential energy</dt>
+    <dd>$V = \frac{1}{4\pi \epsilon_0}$ (...)</dd>
+
+    <dt>Quantum mechanics</dt>
+    <dd>Microscopic state at which physics is bound by the
+        <a class="dt">Schrodinger equation</a>, the
+        <a class="dt">Heisenberg uncertainty principle</a>, and the
+        <a class="dt">Born-Oppenheimer approximation</a>.
+    </dd>
+
+    <dt>Potential energy surface</dt>
+    <dd>PES is the surface with no attraction and no repulsion.</dd>
+
+    <dt>RATTLE</dt>
+    <dd>A mod of the <a class="dt">Velocity-Verlet method</a>. <br>
+        RATTLE imposes <a class="dt">constraint</a>s
+        that only allows the bending of water molecules, while fixing the
+        bond lengths. Constraints are satisfied at all times.
+    </dd>
+
+    <dt>Schrodinger equation</dt>
+    <dd>$\hat{H}\Psi = E\Psi$</dd>
+
+    <dt>SHAKE</dt>
+    <dd>A mod of the <a class="dt">Verlet method</a>.</dd>
+
+
+    <dt>Simple harmonic potential</dt>
+    <dd class="math">$\sum_{\textrm{bonds}}{K_r(r-r_{\textrm{eq}})^2}$</dd>
+
+    <dt>State variable</dt>
+    <dd>Analogous to experimental conditions.</dd>
+
+    <dt>Statistical mechanics</dt>
+    <dd>Sometimes, we are just interested in the averages of
+        <a class="dt" href="observable">observables</a>. It's impossible to
+        simulate everything, anyway.
+    </dd>
+
+    <dt>Temperature</dt>
+    <dd>Related to speed of molecules.</dd>
+
+    <dt>Time scale</dt>
+    <dd>Time required varies for each system to explore their important
+        conformations. For some
+        <a class="dt">system</a>s, if they have deep potential
+        wells, some conformations might not be reached. You can even get
+        stuck in one particular well, as in the case of diamond and
+        graphite. <br>
+    </dd>
+
+    <dt>Time step</dt>
+    <dd>Time divided by steps. Short time step is a waste of time, and long
+        time step breaks the integrator.
+    </dd>
+
+    <dt>Total energy</dt>
+    <dd>Sum of <a class="dt">kinetic energy</a> and
+        <a class="dt">potential energy</a>.
+    </dd>
+
+    <dt>Trajectory</dt>
+    <dd>Going from one point in <a class="dt">phase space</a> to another,
+        depending on time.
+    </dd>
+
+    <dt>Umbrella sampling</dt>
+    <dd>Reducing the height of the peaks and the depth of the troughs of a
+        <a class="dt">potential energy surface</a>. It helps molecules
+        overcome high energy barriers.
+    </dd>
+
+    <dt>van der Waals force</dt>
+    <dd>Weak forces between two permanent <b>or</b> induced dipoles.</dd>
+
+    <dt>Virial theorem</dt>
+    <dd>(1/29)</dd>
+    </dl>
+
+{% endblock contents %}

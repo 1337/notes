@@ -1,0 +1,150 @@
+﻿{% extends "html/notes/notes_template.html" %}
+
+{% block contents %}
+    <h1>CS 370 Notes</h1>
+    
+    <h2>Floating point number systems</h2>
+    
+        <h3>Pitfalls in floating point computation</h3>
+        <p>How you calculate things can affect how accurate the final result is:</p>
+        <div>$a\oplus (b\oplus c)\neq (a\oplus b)\oplus c$</div>
+        
+        <h3>Floating point numbers</h3>
+        <p>For all $F(\beta,t,L,U)$, in normalised systems, a floating point number is</p>
+        <div>$\pm 0.d_1 d_2 d_3â€¦d_t\times \beta^p,\ L\leq p\leq U,\ d_1 \neq 0$</div>
+        
+        <h3>Absolute and relative error</h3>
+        <div>$Err_{abs} = |x_{exact}-x|$</div>
+        <div>$Err_{rel}=\frac{Err_{abs}}{|x_{exact}|} \leq \frac {(|a|+|b|+|c|)}{|a+b+c|}\times (E+E^2) $</div>
+        <p>or, depending on your instructor:</p>
+        <div>$Err_{rel}=\frac{(Err_{abs})}{|x|}$</div>
+        <p>If $Err_{rel}=3.5\times 10^{-5}$, about 5 sig figs are correct.</p>
+
+        <h3>Relationship between $x\in R$ and $fl(x)\in F$</h3>
+        <p>Machine Epsilon $E$: smallest number you can add to 1 to make it not 1.</p>
+        <div>$E=\frac{1}{2}\beta^{-t+1}\sim \beta^{-t+1}$</div>
+        
+        <h3>Cancellation errors and roundoff error analysis</h3>
+        <div>$fl(x)-x = \delta x,|\delta|\lt E$</div>
+        <div>$fl(x) = x(1+\delta)$</div>
+
+            <h4>Example</h4>
+            <div>$(a\oplus b)\oplus c=(a+b)(1+\delta _1 )\oplus c$</div>
+            <div>$=((a+b)(1+\delta _1 )+c)(1+\delta _2 )$</div>
+            <div>$=(a+b) \delta _1 (1+\delta _2 )+(a+b+c) \delta _2$</div>
+        
+        <h3>Conditioning and stability</h3>
+        <h3>A stability analysis</h3>
+        <h3>Exercises for floating point numbers</h3>
+            <p>Number of elements in F: $\pm\ 0.d_1\ d_2~d_{52}\times\beta^p$; 
+            2x from $\pm$, $2^{51}x$
+            from $d_2 ~ d_{52}$, and 2046x from exp (-1022~1023)</p>
+
+    <h2>Interpolation</h2>
+        <p>Interpolants $p(x)$ are not unique.</p>
+        
+        <h3>Polynomial interpolation</h3>
+            <h4>Linear Equations: Vandermonde Systems</h4>
+            <p>A polynomial of degree $n-1$ is represented as</p>
+            <div>$p(x)=c_1+c_2 x+c_3 x^2+...+c_n x^{n-1}$</div>
+            <p>Vandermonde matrix V (<b>disadvantage: matrix gets huge</b>)</p>
+            $V = 
+                 \left|\begin{array}{cc}
+                 1 & x_1 \\ 1 & x_2 
+                 \end{array} \right|
+                 ,\vec {c} = 
+                 \left|\begin{array}{c}
+                 c_1 \\ c_2 
+                 \end{array} \right|,
+                 \vec {y} = 
+                 \left|\begin{array}{c}
+                 y_1 \\ y_2 
+                 \end{array}\right|
+            $
+            <div>$V\times \vec{c}=\vec{y}$</div>
+            
+            <h4>Lagrange form</h4>
+            <p><b>Only one parameter in the Lagrange form shall be 1 at any point.</b>
+            Given a set of $(x_i,y_i)$, consider $n$ Lagrange basis functions $L_k (x),k=1,...n$:</p>
+            $
+                L_k (x)=\frac {(x-x_1 )â€¦(x-x_(k-1) )(NO\ x-x_k )(x-x_(k+1) )â€¦(x-x_n )}
+                              {(x_k-x_1 )â€¦(x_k-x_(k-1) )(NO\ x_k-x_k )(x_k-x_(k+1) )â€¦(x_k-x_n )}
+            $
+            $
+                L_k (x_j ) = 
+                \begin{cases}
+                    1\ for\ i=j \\
+                    0\ otherwise
+                \end{cases}
+            $
+            <p>Then, $p(x)$ becomes 
+                $p(x)=y_1 L_1 (x)+y_2 L_2 (x) + ...$</p>
+            <p><b>Disadvantage</b>: each Lagrange basis function tries very hard to fit everything in, 
+            without actually trying to approximate places between $x_n$ and $x_{n+1}$.</p>
+
+        <h3>Piecewise polynomial interpolation</h3>
+        <p>... of degree 1: <b>linear piecewise polynomial interpolation</b></p>
+
+        <h3>Piecewise hermite interpolation</h3>
+        <p>Read page 23.</p>
+        
+        <h3>Spline interpolants</h3>
+        <p><b>Cubic spline</b>: a cubic spline is a piecewise cubic polynomial, continuous at 
+            $S(x)$, $S'(x)$, and 
+            $S''(x)$, each piece being 
+            $[x_i,x_{i+1}]$ and $i=1,...,n-1$.</p>
+        <p>Beginning and end condition: $S_i(x_i)=y_i;\ S_i(x_{i+1})=y_{i+1}$</p>
+        <p>Derivative continuity I: $S'_i(x_{i+1})=S'_{i+1}(x_{i+1})$</p>
+        <p>Derivative continuity I: $S''_i(x_{i+1})=S''_{i+1}(x_{i+1})$</p>
+        <p>Two degrees of freedom left. Impose boundary conditions.</p>
+        <ul>
+            <li>Free boundary, e.g. <b>natural CS</b>: $S''(x_1)=0;\ S''(x_n)=0$</li>
+            <li><b>Clamped spline</b>: $S'(x_1)$ and $S'(x_n)$ are set.</li>
+            <li><b>Periodic spline</b>: $x_1$ and $x_n$ are continuous on all $S(x)$, 
+                $S'(x)$, and $S''(x)$.</li>
+        </ul>
+        
+        <h3>Efficient computation of splines</h3>
+        <h3>Spline energy</h3>
+        <h3>B-splines and B&eacute;zier curves</h3>
+        <h3>Exercises for interpolation</h3>
+        <h3>Planar parametric curves</h3>
+    
+    <h2>Numerical linear algebra</h2>
+
+    <h2>Google page rank</h2>
+
+    <h2>Least squares problems</h2>
+
+    <h2>Discrete Fourier transforms</h2>
+        <h3>Introduction to Fourier Analysis</h3>
+        <h3>Fourier series</h3>
+        <h3>Discrete Fourier transform</h3>
+        <h3>Discrete Fourier transform (DFT) II</h3>
+        <h3>Inverse discrete Fourier transform (IDFT)</h3>
+        <h3>1-D image compression</h3>
+        <h3>2-D image compression</h3>
+        <h3>Fast Fourier transform</h3>
+        
+    <h2>Differential Equations</h2>
+        
+        <h3>Introduction</h3>
+            <p>A differential equation is one that looks like</p>
+            <div>$y'(t) = a\cdot y(t)$</div>
+            <p>Any equation that satisfies that formula is called a <b>solution</b>. For example,
+            $y(t)=y_0\cdot e^{a(t-t_0)}$ is a solution.</p>
+        
+        <h3>Approximating methods</h3>
+            <p>The one we use in class is the <b>Euler Method</b> as follows:</p>
+            <ul>
+                <li>$y'(t) = f(t, y(t))$ is the dynamics function. $y(t_0)=y_0$ (by definition)</li>
+                <li>Initialise $y_0$ (the initial Y), $t_0$ (time zero), $n$ (iterator), and $n$ (timestep $h = \frac{t}{\# steps}$)</li>
+                <li>Depending on whether your Euler is <b>Modified Euler</b> or not, timestep $h$ can be adjusted</li>
+                <li>Sub $y_0$ into the equation, iterate to get $y_1$</li>
+                <li>Increment $n$</li>
+            </ul>
+            <h4>Runge-Kutta Methods</h4>
+        
+        <h3>Global and Local error</h3>
+        <h3>Practical issues</h3>
+{% endblock contents %}

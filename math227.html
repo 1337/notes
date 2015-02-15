@@ -1,0 +1,99 @@
+{% extends "html/notes/notes_template.html" %}
+
+{% block contents %}
+    <h1>MATH 227 Notes</h1>
+
+    <h2>Definitions</h2>
+    <dl>
+        <dt>Direction number</dt>
+        <dd>Cool beans</dd>
+
+        <dt>Projection</dt>
+        <dd>One of the axis is entirely 0.</dd>
+    </dl>
+
+    <h2>Points</h2>
+        <ul>
+            <li>A point: $\lt x_0, y_0, z_0 \gt$</li>
+            <li>x-value of a point: the closest distance to the y-z plane</li>
+            <li>Distance between two points $P_1$ and $P_2$:
+                $|P_1 P_2| = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2 + (z_2-z_1)^2}$
+            </li>
+            <li>Line between two points:
+                $\bar{AB} = \lt B_x - A_x, B_y - A_y, B_z - A_z \gt$
+            </li>
+        </ul>
+
+    <h2>Lines</h2>
+        <ul>
+            <li>Equation of a line: $\bar{r} = \bar{r_0} + \bar{P_0P}
+                                             = \bar{r_0} + t\bar{v}$
+                <br />  where $\bar{r_0} = \lt r_x, r_y, r_z \gt$,
+                        $t$ is the scalar multiplier, and
+                        $\bar{v} = \lt a, b, c \gt$
+                <br />
+                <br />  Since $x = x_0 + at, y = y_0 + bt, z = z_0 + ct$,
+                        $\frac{x - x_0}{a} = \frac{y - y_0}{b} = \frac{z - z_0}{c}$
+                        ($a, b, c$ being <a class="dt">direction number</a>s)
+            </li>
+            <li>Length of a line: $|a| = \sqrt{x^2 + y^2 + z^2}$</li>
+        </ul>
+
+    <h2>Planes</h2>
+        <p>A plane is made of a <a class="dt">normal vector</a> $\bar{n}$,
+            which is perpendicular to a line inside the plane, $\bar{P_0P}$.</p>
+        <p>That means $\bar{n} \cdot \bar{P_0P} \cos{\theta}
+                     = \bar{n} \cdot \bar{P_0P} (0) = 0$</p>
+        <ul>
+            <li>Equation of a plane:
+                <br />  where $\bar{r_0} = \lt r_x, r_y, r_z \gt$,
+                        $t$ is the scalar multiplier, and
+                        $\bar{v} = \lt a, b, c \gt$
+            </li>
+            <li>Length of a line: $|a| = \sqrt{x^2 + y^2 + z^2}$</li>
+            <li>Equation of a sphere: $(x-h)^2 + (y-k)^2 + (z-l)^2 = r^2$</li>
+        </ul>
+
+    <h2>Directional Derivatives</h2>
+        <p> $F_x$ is slope along x and $F_y$ is slope along y.<br />
+            We can have a $F_s = (X_s, Y_s)$ where $S$ is a unit vector of $(\cos \theta, \sin \theta)$.
+        </p>
+        <p> Example: we want directional derivative of Z along S:<br />
+            $\begin{eqnarray*}
+                 D_{\hat{u}}f &=& \frac{dz}{ds} \\
+                              &=& \frac{\partial z}{\partial x}
+                                  \frac{\partial x}{\partial s} +
+                                  \frac{\partial z}{\partial y}
+                                  \frac{\partial y}{\partial s} \\
+                              &=& F_x \frac{\partial x}{\partial s} +
+                                  F_y \frac{\partial y}{\partial s} \\
+                              &=& F_x \cos (\theta) + F_y \sin (\theta) \\
+                              &=& (F_x, F_y) \cdot \hat{u} \\
+                              &=& \nabla{\vec{f}} \cdot \hat{u}
+            \end{eqnarray*}$
+        </p>
+
+    <h2>Lagrange Multipliers</h2>
+        
+
+    <h2>Kepler's Laws</h2>
+        <h3>Vector rules</h3>
+        <p>$\begin{eqnarray*}
+            (\vec{a} \times \vec{b})' &=& \vec{a} \times \vec{b}' + \vec{a}' \times \vec{b} \\
+            (\vec{a} \cdot \vec{b})' &=& \vec{a} \cdot \vec{b}' + \vec{a}' \cdot \vec{b} \\
+            (\vec{u} \cdot \vec{u})' &=& \vec{0} \\
+            \vec{a} \cdot (\vec{b} \times \vec{c})' &=& (\vec{a} \times \vec{b}) \cdot \vec{c} \\
+        \end{eqnarray*}$</p>
+
+    <h2>Multiple Integrals</h2>
+        <p>Over a region $D$ (also $E$ or $R$) =
+           $\{(x,y) | g_1(x) \leq y \leq g_2(x),\ a \leq x \leq b \}$</p>
+        <p>$\iint\limits_S z\ dA = \int\limits^{y=\inf}_{y=-\inf}
+                                   \int\limits^{x=f_{over}(y)}_{x=f_{under}(y)} f(x,y)\ dx\ dy $</p>
+
+        <p>If all bounds are consts, order doesn't matter.
+           If a set of bounds e.g. y is a func of x, do y first.<br />
+           <b>Note that changing  integration order will change the integration limits.</b>
+        </p>
+
+{% endblock contents %}

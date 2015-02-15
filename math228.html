@@ -1,0 +1,121 @@
+{% extends "html/notes/notes_template.html" %}
+
+{% block contents %}
+    <h1>MATH 228 Notes</h1>
+    
+    <h2>Prior knowledge</h2>
+        <h3>Differentials</h3>
+            $\frac{d}{dx}(ax^{n}) = ax^{n-1}$<br />
+            $\frac{d}{dx}(e^x) = e^x$<br />
+            $\frac{d}{dx}(\ln x) = \frac{1}{x}$<br />
+            <p>Chain rule and product rule: $\frac{dy}{dx} = \frac{dy}{dz} \frac{dz}{dx}$, and $\frac{d^2y}{dx^2} = \frac{d}{dx}(\frac{dy}{dx}) = \frac{d}{dx}[(\frac{dy}{dz})(\frac{dz}{dx})] = ...$</p>
+        <h3>Integrals</h3>
+            <h4>Substitution</h4>
+                <p>If you get $\int dG/dx F(G(x))\ dx$, you can let $u = G(x)$ and $du = G dx$.</p>
+                $\int \frac{dG}{dx} F(G(x))\ dx = \int F(u) du$
+            <h4>Partial fractions</h4>
+            <h4>By parts</h4>
+    <h2>First-order ODEs</h2>
+        <h3>Separable equations</h3>
+            <p>Look for exceptions first! (x != 0, y != 0, ...)</p>
+            $\frac{dy}{dx} = F(x,y) = G(x) \times H(y)$<br />
+            $\frac{dy}{dx} = G(x) \times H(y)$<br />
+            $dy = G(x) \times H(y) dx$<br />
+            $\frac{1}{H(y)} dy = G(x) dx$<br />
+            $\int \frac{1}{H(y)} dy = \int G(x) dx$<br />
+            $\ln {|H(y)|} + c = \int G(x) dx$<br />
+            $H(y) = e^{\int G(x) dx} + c$
+        <h3>Integrating with an integration factor, $R(x)$</h3>
+            $y' + \frac{1}{2}\ y = \frac{1}{2}e^{\frac{t}{3}}$
+            <p>Multiply both sides by a factor, $R(x)$.</p>
+            $R\ y' + \frac{1}{2}R\ y = \frac{1}{2}R\ e^{\frac{t}{3}}$
+            <p> Notice that $(Ry)' = R\ y' + R'\ y$ via product rule. We try to match the LHS with $R\ y' + R'\ y$.</p>
+            $R\ y' + R'\ y = R\ y' + \frac{1}{2}R\ y$
+            <p>... and we found that </p>
+            $R' = \frac{1}{2}R$
+            <p>Now use your 1337 separable equations skills to find R from R'.</p>
+            $\frac{dR}{dt}\frac{1}{R} = \frac{1}{2}$<br />
+            $\frac{1}{R} dR = \frac{1}{2} dt$<br />
+            $\ln {|R|} = \frac{1}{2} t + c$<br />
+            $R = e^{\frac{1}{2} t + c}$<br />
+            $R = e^{\frac{1}{2} t}e^c$<br />
+            $R = ce^{\frac{1}{2} t} = e^{\frac{1}{2} t} (c = 1)$
+            <p>The idea here is to put R back into the modified equation... $(Ry)'$</p>
+            $(Ry)' = R\ y' + R'\ y = R \times \frac{1}{2}e^{\frac{t}{3}}$
+            <p>We know R and we have y'...</p>
+            $((e^{\frac{1}{2} t}) y)' = e^{\frac{1}{2} t}\frac{1}{2}e^{\frac{t}{3}} = \frac{1}{2} e^{\frac{5t}{6}}$
+            <p>Integrate both sides</p>
+            $(e^{\frac{1}{2} t}) y = \int \frac{1}{2} e^{\frac{5t}{6}} dt = \frac{6}{10} e^{\frac{5t}{6}} + c$
+            <p>Remember the $+c$.</p>
+            $y = \frac{6}{10} \frac{e^{\frac{5t}{6}}}{e^{\frac{1}{2} t}} + \frac{c}{e^{\frac{1}{2} t}}$
+            <p>Simplify</p>
+            $y = \frac{3}{5} e^{\frac{t}{3}} + c\ e^{\frac{-t}{2}}$
+            <p>If it were an Initial value problem (IVP), you would need to find $c$, as well.</p>
+            <h4>Example: solve $y' = 1 + x + y^2 + xy^2$</h4>
+                <p>Separate the variables</p>
+                $1 + x + y^2 + xy^2 = (1+x)(1+y^2)$<br />
+                $dy/dx = (1+x)(1+y^2)$<br />
+                $\int \frac{1}{1+y^2}\ dy = \int 1+x\ dx$<br />
+                $tan^{-1} (y) = x+\frac{1}{2}x^2\ +c$<br />
+                $y = \tan (x+\frac{1}{2}x^2\ +c)$
+        <h3>Linear equations</h3>
+            $\frac{dy}{dx} = F(x,y) = A(x)y + B(x)$
+        <h3>Finding out if an equation is exact or not</h3>
+            <p>You were given a function, $M(x,y)dx + N(x,y)dy = 0$. The differential equation is exact if</p>
+            $\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$
+            <p>If they are the same, you have to solve the equation. Let $G$ be the solution. $\frac{\partial G}{\partial x} = M$, and $\frac{\partial G}{\partial y} = N$. That means $G = \int M \partial x$ and $G = \int N \partial y$.</p>
+            <h4>Example</h4>
+                $(2xy^2+2y)dx+(2x^2y+2x)y'=0$
+                <p>Let $M = 2xy^2+2y$, $N=2x^2y+2x$</p>
+                $\partial M / \partial y = 4xy+2$<br />
+                $\partial N / \partial x = 4xy+2$
+                <p>... so the DE is exact! Integrate M get G</p>
+                $G = \int_x M\ dx + h(y) = x^2y^2 + 2xy + h(y)$
+                <p>Differentiate that to get $dG/dy$, which was said to be N:</p>
+                $dG/dy = 2x^2y + 2x$
+                <p>Result matches $N$ precisely, so $h(y)$ <i>must be a constant</i>.</p>
+                <p>Therefore, the solution to this problem is $2x^2y + 2x + C = 0$</p>
+    <h2>Second-order ODEs</h2>
+        <h3>Homogeneous ones with constant coefficients</h3>
+            <p>In the form $1y'' + Py' + Qy = 0$, solve by trying $y=e^{mx}$</p>
+            $y' = me^{mx}$
+            $y'' = m^2e^{mx}$
+            $1y'' + Py' + Qy = m^2e^{mx} + Pme^{mx} + Qe^{mx} = 0$
+            $e^{mx} (m^2 + Pm + Q) = 0$
+            <p>Since $e^{mx}$ can never be 0, the quadratic must be 0. Solve the quadratic.</p>
+            <h4>If you get two values of $m$:</h4>
+                <p>Congratulations! Your solution is $y_{[c]} = Ae^{m_1x} + Be^{m_2x}$.</p>
+            <h4>If you get only one value of $m$:</h4>
+                <p>Try multiplying $m$ by $x$ or $x^2$ to get $m_2$.</p>
+                <h5>Reduction of Order</h5>
+                    <p>Given one known solution, the method of Reduction of Order allows you to find a second one.</p>
+                    $y_2 = v(x) \times y_1$
+                <h5>Method of undermined coefficients (i.e. guessing)</h5>
+                    <p>You get a non-homogeneous equation, and you know that LHS = RHS. If you think $e^{mx}$ can do the job, guess $>Ae^{mx}$. If the RHS is cos or sin, try $A\cos x + B\sin x$. </p>
+                <h5>Variation of Parameters</h5>
+            <h4>If you get complex roots:</h4>
+                <p>Just keep doing the question. Since $e^{it} = \cos (t) + i\sin (t)$... </p>
+        <h3>The Wronskian</h3>
+            <h4>Abel's Theorem (p.153)</h4>
+                $W (y_1, y_2)(t) = c\ e^{-\int p(t)\ dt}$
+    <h2>Taylor series solutions</h2>
+        <h3>Differentiating a Taylor series</h3>
+            <p>Say you have</p>
+            $y = \sum^\infty_{n=0} a_n x^n$<br />
+            $y' = \sum^\infty_{n=0} (n)\ a_n x^{n-1}$<br />
+            $y'' = \sum^\infty_{n=0} (n)\ (n-1)\ a_n x^{n-2}$
+            <p>But since $(n)(n-1)$ produces 0 for both $n=0$ and $n=1$, we can shift the series up by 2 without worries:</p>
+            $y'' = \sum^\infty_{n=2} (n)\ (n-1)\ a_n x^{n-2}$
+        <h3>Shifting index of summation</h3>
+            $y'' = \sum^\infty_{n=2} (n)\ (n-1)\ a_n x^{n-2}$
+            <p>Let $p = n - 2$ (also means $n = p + 2$) and sub p into the equation</p>
+            $y'' = \sum^\infty_{(p + 2)=2} (p + 2)\ ((p + 2)-1)\ a_{(p + 2)} x^{(p + 2)-2}$<br />
+            $y'' = \sum^\infty_{p = 0} (p+2)\ (p+1)\ a_{p+2} x^p$
+            <p>p is a dummy variable, so simply replace p by n.</p>
+            $y'' = \sum^\infty_{n = 0} (n+2)\ (n+1)\ a_{n+2} x^n$
+        <h3>Extracting terms from a series</h3>
+            <p>Calculate the first term ($a_0$).</p>
+            $y''(n = 0) = (0+2)\ (0+1)\ a_{0+2} x^0 = 2a_2$
+            <p>Now that you have that term, increment your series summation by 1.</p>
+            $y''= 2a_2 + \sum^\infty_{n = 1} (n+2)\ (n+1)\ a_{n+2} x^n$
+{% endblock contents %}

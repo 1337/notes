@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>STAT 202 Notes</title>
+        <script type="text/javascript" src="//ohai.ca/scripts/jsMath/easy/load.js"></script>
+        <script type="text/javascript"> mathie ('math'); </script>
+        <link rel="stylesheet" href="http://ohai.ca/styles/notes.css" />
+    </head>
+    <body><div class='body'>
+        <h1>STAT 202 Notes</h1>
+        <p>Variance: <span class="math">E(x^2) - (E(x))^2</span> => <span class="math">var(x) = \sum_i{((y_i-\mu)^2\times P(Y=y_i))}</span> or <span class="math">var(x) = \sum_i{(y_i^2\times P(Y=y_i))} - \mu^2</span></p>
+        <div class="math">E(ax+by+c) = aE(x) + bE(y) + c</div>
+        <div class="math">Var(ax+by+c) = |a^2Var(x)| + |b^2Var(y)|</div>
+        <p>Binomial distribution: <span class="math">Var(Bin()) = np(1-p)</span></p>
+        <div class="math">_nC_j = \frac{n!}{(n-j)!(j)!}</div>
+        <p>x successes over n tries with probability p each: <span class="math">P_{BIN} (_nC_x) p^x (1-p)^{n-x}</span></p>
+        <p>PDF: <span class="math">f(y) = P(Y = y)</span></p>
+        <p>CDF: <span class="math">F(y) = P(Y \leq y)</span>; <span class="math">f(y) = F(y) - F(y-1)</span></p>
+        <div class="math">Z = \frac{Y-\mu}{\sigma}</div>
+        <p>95th percentile: <span class="math">P(Z\lt z_{1-0.95}) = 0.95</span>; look up 0.9500 inside Z table (or find the closest one)</p>
+        <p>Using z scores in abnormal situations: <span class="math">z_{0.05} = 1.645 = \frac{y-\mu}{\sigma}</span></p>
+        <p>Sampling: <span class="math">\bar{y} = \frac{1}{n}\sum_i{y_i}</span></p>
+        <p>Sample proportion: <span class="math">\hat{P} = \frac{x}{n}</span></p>
+        <div class="math">E(\hat{P}) = E(\frac{x}{n}) = \frac{1}{n}E(x)</div>
+        <div class="math">Var(\hat{P}) = Var(\frac{x}{n}) = \frac{1}{n^2}Var(x)</div>
+        <div class="math">\sigma_{sample} = \frac{\sigma_{pop^n}}{\sqrt{n}}</div>
+        <p>Sample distribution goes through normal distribution of <span class="math">N(\mu, \frac{\sigma_{pop^n}}{\sqrt{n}})</span></p>
+        <div class="math">mean(\bar{Y}) = E(\bar{Y}) = \mu</div>
+        <p>Law of large numbers: as <span class="math">n \rightarrow \inf,\ \bar{y} \rightarrow \mu</span></p>
+        <p>Binomial approximation: <span class="math">P_{BIN}(X = x) = P_{NORMAL}(X + 0.5 < x) - P_{NORMAL}(X - 0.5 < x)</span></p>
+    </div></body>
+</html>

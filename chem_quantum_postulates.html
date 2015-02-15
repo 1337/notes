@@ -1,0 +1,24 @@
+{% extends "html/notes/notes_template.html" %}
+
+{% block contents %}
+    <h1>CHEM 356 Notes</h1>
+    
+    <h2>Quantum Mechanics: postulates</h2>
+    
+    <ol>
+        <li>The state of a quantum mechanical system is completely specified 
+            by a function $\Psi$.</li>
+        <li>To every observable in classical mechanics (e.g. $p$)
+            there corresponds a linear, Hermitian operator (e.g. $\hat{P}$)
+            in quantum mechanics.</li>
+        <li>In any measurement of the observable associated with operator 
+            $\hat{P}$, the only values that will ever be observed are the 
+            eigenvalues $p$, which satisfy the eigenvalue equation
+            $\hat{P}\Psi = p \Psi$</li>
+        <li>If a system is in a state described by a normalized wave function 
+            $\Psi$, then the average value of the observable corresponding to 
+            $\hat{P}$ is given by $\lt \Psi | P | \Psi \gt$.</li>
+        <li>The wavefunction or state function of a system evolves in time 
+            according to the time-dependent Schrödinger equation...</li>
+    </ol>
+{% endblock contents %}

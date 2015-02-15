@@ -1,0 +1,32 @@
+{% extends "html/notes/notes_template.html" %}
+
+{% block contents %}
+    <h1>CHEM 356 Notes</h1>
+    
+    <h2>Particle in a Box: Tunnelling</h2>
+        <img src="/static/img/TunnelEffektKling1.png"
+             alt="http://upload.wikimedia.org/wikipedia/commons/1/1d/TunnelEffektKling1.png"
+             style="max-width:100%" />
+        <p>If a potential wall is not infinity, a particle can be outside the
+            well even though it doesn't have enough energy to go over the wall.
+        </p>
+        
+        <p>We set up three regions' worth of schrodinger equations:</p>
+        <div class="math">$\begin{eqnarray*}
+            \Psi_{I}(x) &=& A e^{i \alpha x} + B e^{-i \alpha x} \\
+            \Psi_{II}(x) &=& C e^{\beta x} + D e^{\beta x} \\
+            \Psi_{III}(x) &=& F e^{i \alpha x}
+        \end{eqnarray*}$</div>
+        <p>$\Psi_{III}$ has only one term because it is a travelling wave 
+            in only one direction. <br />
+            $\Psi_{II}$ doesn't have imaginary parts because it is a 
+            decaying function, not a standing wave.
+        </p>
+
+        <h3>Transmission Coefficient</h3>
+            <p>The transmission coefficient is the percentage of the 
+                wavefunction leaking across the wall... so it is</p>
+            <div class="math">$\frac{1}{\tau} = \frac{|A|^2}{|F|^2}$</div>
+            <div class="math">$\tau ~= 4e^{\frac{-a}{\hbar}\sqrt{2m(V_o - E}}$</div>
+            <p>You can see that it depends on the wall's height, $V_0$.</p>
+{% endblock contents %}
