@@ -1,6 +1,10 @@
-{% extends "html/notes/notes_template.html" %}
-
-{% block contents %}
+<!doctype html>
+<html>
+<head>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/grace/grace.js"></script>
+</head>
+<body class="template contents" data-template-src="notes_template.html">
     <h1>MATH 227 Notes</h1>
 
     <h2>Definitions</h2>
@@ -95,5 +99,5 @@
            If a set of bounds e.g. y is a func of x, do y first.<br />
            <b>Note that changing  integration order will change the integration limits.</b>
         </p>
-
-{% endblock contents %}
+</body>
+</html>

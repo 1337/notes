@@ -1,6 +1,10 @@
-{% extends "html/notes/notes_template.html" %}
-
-{% block contents %}
+<!doctype html>
+<html>
+<head>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/grace/grace.js"></script>
+</head>
+<body class="template contents" data-template-src="notes_template.html">
     <h1>CHEM 356 Notes</h1>
     
     <h2>The Harmonic Oscillator Model</h2>
@@ -47,4 +51,5 @@
                 <li>$\lt V \gt = \frac{\hbar}{2} \sqrt{\frac{k}{m}}(v+\frac{1}{2})$ (the same thing)</li>
                 <li>$\lt E \gt = \lt T \gt + \lt V \gt = \hbar \sqrt{\frac{k}{m}}(v+\frac{1}{2})$</li>
             </ul>
-{% endblock contents %}
+</body>
+</html>

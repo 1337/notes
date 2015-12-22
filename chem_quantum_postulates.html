@@ -1,6 +1,10 @@
-{% extends "html/notes/notes_template.html" %}
-
-{% block contents %}
+<!doctype html>
+<html>
+<head>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/grace/grace.js"></script>
+</head>
+<body class="template contents" data-template-src="notes_template.html">
     <h1>CHEM 356 Notes</h1>
     
     <h2>Quantum Mechanics: postulates</h2>
@@ -21,4 +25,5 @@
         <li>The wavefunction or state function of a system evolves in time 
             according to the time-dependent Schrödinger equation...</li>
     </ol>
-{% endblock contents %}
+</body>
+</html>

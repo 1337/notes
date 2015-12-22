@@ -1,6 +1,10 @@
-{% extends "html/notes/notes_template.html" %}
-
-{% block contents %}
+<!doctype html>
+<html>
+<head>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/grace/grace.js"></script>
+</head>
+<body class="template contents" data-template-src="notes_template.html">
     <h1>CHEM 356 Notes</h1>
     
     <h2>Operators and Commutators</h2>
@@ -21,4 +25,5 @@
             <div class="math">$
                 [\hat{A}, \hat{B}]f = \hat{A}\hat{B}f - \hat{B}\hat{A}f
             $</div>
-{% endblock contents %}
+</body>
+</html>

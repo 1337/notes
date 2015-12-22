@@ -1,6 +1,10 @@
-{% extends "html/notes/notes_template.html" %}
-
-{% block contents %}
+<!doctype html>
+<html>
+<head>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/grace/grace.js"></script>
+</head>
+<body class="template contents" data-template-src="notes_template.html">
     <h1>MATH 101: How to Math</h1>
     
     <h2>The number system</h2>
@@ -81,6 +85,5 @@
                 <li>$\tan (A+B) = \frac{\tan A + \tan B}{1 - \tan A \tan B}$</li>
                 <li><a href="http://en.wikipedia.org/wiki/Unit_circle">$sin^2(x) + cos^2(x) = 1$</a></li>
             </ul>
-        
-        
-{% endblock contents %}
+</body>
+</html>

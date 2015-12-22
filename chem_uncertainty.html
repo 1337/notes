@@ -1,6 +1,10 @@
-{% extends "html/notes/notes_template.html" %}
-
-{% block contents %}
+<!doctype html>
+<html>
+<head>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/grace/grace.js"></script>
+</head>
+<body class="template contents" data-template-src="notes_template.html">
     <h1>CHEM 356 Notes</h1>
     
     <h2>Heisenburg Uncertainty Principle</h2>
@@ -32,4 +36,5 @@
             of any two observations</p>
         <div class="math">$(\Delta A)^2 (\Delta B)^2 \geq \frac{1}{4} | \lt [A,B] \gt |^2$</div>
         <p><b>What this means? I'm not sure.</b></p>
-{% endblock contents %}
+</body>
+</html>

@@ -1,6 +1,10 @@
-{% extends "html/notes/notes_template.html" %}
-
-{% block contents %}
+<!doctype html>
+<html>
+<head>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/grace/grace.js"></script>
+</head>
+<body class="template contents" data-template-src="notes_template.html">
     <h1>MATH 228 Notes</h1>
     
     <h2>Prior knowledge</h2>
@@ -118,4 +122,5 @@
             $y''(n = 0) = (0+2)\ (0+1)\ a_{0+2} x^0 = 2a_2$
             <p>Now that you have that term, increment your series summation by 1.</p>
             $y''= 2a_2 + \sum^\infty_{n = 1} (n+2)\ (n+1)\ a_{n+2} x^n$
-{% endblock contents %}
+</body>
+</html>

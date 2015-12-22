@@ -1,6 +1,10 @@
-{% extends "html/notes/notes_template.html" %}
-
-{% block contents %}
+<!doctype html>
+<html>
+<head>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/grace/grace.js"></script>
+</head>
+<body class="template contents" data-template-src="notes_template.html">
     <h1>CHEM 356 Notes</h1>
     
     <h2>Particle in a Box: Time-independent, 1D version</h2>
@@ -120,4 +124,5 @@
                     <td>$n-1$</td>
                 </tr>
             </table>
-{% endblock contents %}
+</body>
+</html>

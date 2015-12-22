@@ -1,6 +1,10 @@
-{% extends "html/notes/notes_template.html" %}
-
-{% block contents %}
+<!doctype html>
+<html>
+<head>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/grace/grace.js"></script>
+</head>
+<body class="template contents" data-template-src="notes_template.html">
     <h1>CHEM 356 Notes</h1>
     
     <h2>Particle in a Box: Time-independent, 3D version</h2>
@@ -56,4 +60,5 @@
         <h3>Degeneracy</h3>
         <p>If any of the three quantum numbers are the same, then we get 
             degeneracy, e.g. $[2,1,1]$, $[1,2,1]$, and $[1,1,2]$.</p>
-{% endblock contents %}
+</body>
+</html>

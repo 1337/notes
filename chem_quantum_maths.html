@@ -1,6 +1,10 @@
-{% extends "html/notes/notes_template.html" %}
-
-{% block contents %}
+<!doctype html>
+<html>
+<head>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/grace/grace.js"></script>
+</head>
+<body class="template contents" data-template-src="notes_template.html">
     <h1>CHEM 356 Notes</h1>
     
     <h2>Basic mathematics</h2>
@@ -27,4 +31,5 @@
                 <li>Variance: $\sigma^2 = \lt x^2 \gt - (\lt x \gt)^2$</li>
                 <li>Standard Error: $\sigma = \sqrt{\lt x^2 \gt - (\lt x \gt)^2}$</li>
             </ul>
-{% endblock contents %}
+</body>
+</html>

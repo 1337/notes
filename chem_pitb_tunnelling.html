@@ -1,6 +1,10 @@
-{% extends "html/notes/notes_template.html" %}
-
-{% block contents %}
+<!doctype html>
+<html>
+<head>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/grace/grace.js"></script>
+</head>
+<body class="template contents" data-template-src="notes_template.html">
     <h1>CHEM 356 Notes</h1>
     
     <h2>Particle in a Box: Tunnelling</h2>
@@ -29,4 +33,5 @@
             <div class="math">$\frac{1}{\tau} = \frac{|A|^2}{|F|^2}$</div>
             <div class="math">$\tau ~= 4e^{\frac{-a}{\hbar}\sqrt{2m(V_o - E}}$</div>
             <p>You can see that it depends on the wall's height, $V_0$.</p>
-{% endblock contents %}
+</body>
+</html>

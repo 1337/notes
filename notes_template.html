@@ -1,65 +1,21 @@
-{% extends "base.html" %}
-
-{% block extra_head_scripts %}
-    <script src="/static/js/jquery/dist/jquery.min.js"></script>
+<html>
+<head>
+    <link rel="stylesheet" href="default.css"/>
+    <link rel="stylesheet" href="styles.css"/>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <nav>
+            <a href="/">Home</a>
+        </nav>
+    </div>
+    <div class="document container wrapper">
+        {{ contents }}
+    </div>
+    <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
     </script>
-    <script type="text/javascript"
-            src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
-    <script type="text/javascript" src="/static/js/jquery.dt.min.js"></script>
-    <style type="text/css">
-        body {
-            /* http://www.2ality.com/2012/01/numbering-headingshtml.html */
-            counter-reset: h2counter;
-        }
-        h1 {
-            counter-reset: h2counter;
-        }
-
-        h2:before {
-            content: counter(h2counter) ".\0000a0\0000a0";
-            counter-increment: h2counter;
-            counter-reset: h3counter;
-        }
-        h2.nocount:before {
-            content: none;
-            counter-increment: none;
-        }
-
-        h3:before {
-            content: counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
-            counter-increment: h3counter;
-            counter-reset: h4counter;
-        }
-        h3.nocount:before {
-            content: none;
-            counter-increment: none;
-        }
-
-        h4:before {
-            content: counter(h2counter) "." counter(h3counter) "." counter(h4counter) ".\0000a0\0000a0";
-            counter-increment: h4counter;
-        }
-        h4.nocount:before {
-            content: none;
-            counter-increment: none;
-        }
-
-        #wrapper {
-            /* seemed less cheap */
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        }
-        #wrapper h2 {
-            margin-left: 20px;
-        }
-        #wrapper h3 {
-            margin-left: 6px;
-        }
-        #wrapper h5, #wrapper h6,  #wrapper>p, #wrapper>div,
-        #wrapper>dl {
-            margin-left: 45px;
-        }
-    </style>
-{% endblock extra_head_scripts %}
+</body>
+</html>

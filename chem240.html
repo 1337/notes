@@ -1,8 +1,12 @@
-{% extends "html/notes/notes_template.html" %}
-
-{% block contents %}
+<!doctype html>
+<html>
+<head>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/grace/grace.js"></script>
+</head>
+<body class="template contents" data-template-src="notes_template.html">
     <h1>CHEM 240: Mathematics for Chemistry</h1>
-    
+
     <h2>Derivatives</h2>
         <ul>
             <li>$f'(x) = \lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0}$</li>
@@ -12,15 +16,16 @@
             <li>$(e^ax)' = ae^ax$</li>
             <li>$(\ln ax)' = \frac{a}{x}$</li>
             <li>$(\tan(x))' = \sec^2(x)$</li>
-            <li>L'Hopital's rule: if $\frac{0}{0}$ or $\frac{\infty}{\infty}$, 
-                then $\lim_{x \to 0} \frac{f(x)}{g(x)} = 
+            <li>L'Hopital's rule: if $\frac{0}{0}$ or $\frac{\infty}{\infty}$,
+                then $\lim_{x \to 0} \frac{f(x)}{g(x)} =
                       \lim_{x \to 0} \frac{f'(x)}{g'(x)}$</li>
         </ul>
 
     <h2>Multiple derivatives</h2>
         <ul>
-            <li>$\frac{\partial^2y}{\partial x^2} = 
+            <li>$\frac{\partial^2y}{\partial x^2} =
                 \frac{\partial}{\partial x} (\frac{\partial y}{\partial x})$</li>
             <li></li>
         </ul>
-{% endblock contents %}
+</body>
+</html>

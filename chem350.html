@@ -1,6 +1,10 @@
-{% extends "html/notes/notes_template.html" %}
-
-{% block contents %}
+<!doctype html>
+<html>
+<head>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/grace/grace.js"></script>
+</head>
+<body class="template contents" data-template-src="notes_template.html">
     <h1>CHEM 350 Notes</h1>
     
     <h2>Some math</h2>
@@ -369,4 +373,5 @@
                 <div class="math">
                     \frac{1}{ {[A]_t}^{n-1}}-\frac{1}{ {[A]_0}^{n-1}}=(n-1)kt
                 </div>
-{% endblock contents %}
+</body>
+</html>

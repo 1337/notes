@@ -1,96 +1,95 @@
+<!doctype html>
 <html>
-    <head>
-        <title>CS 338 Notes</title>
-        <script type="text/javascript" src="http://ohai.ca/scripts/jsMath/easy/load.js"></script>
-        <script type="text/javascript"> mathie ('math'); </script>
-        <link rel="stylesheet" href="http://ohai.ca/styles/notes.css" />
-    </head>
-    <body><div class='body'>
-        <h1>CS 338 Notes</h1>
-        
-        <h2>Defintitions</h2>
-            <table>
-                <tr>
-                    <th>Attribute</th>
-                    <td>Table column OR a given property of a tuple.</td>
-                </tr>
-                <tr>
-                    <th>Database (DB)</th>
-                    <td>A collection of files (records and dictionaries) containing data</td>
-                </tr>
-                <tr>
-                    <th>Database management system (DBMS)</th>
-                    <td>
-                        Collection of programs that manipulate databases:
-                        <ul>
-                            <li>Maintains, replicates, recovers data</li>
-                            <li>Applies access restrictions</li>
-                            <li>Ensures data independence (physically / logically)</li>
-                            <li>Ensures data concurrency (many things can be done to a DB at any given time at multiple locations)</li>
-                            <li>Ensures data consistency, i.e. byte order</li>
-                            <li>Enforces data integrity, i.e. the data means something</li>
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Data definition language (DDL)</th>
-                    <td>Specifies database schemas. Examples: ALTER TABLE, TRUNCATE, DROP.</td>
-                </tr>
-                <tr>
-                    <th>Data manipulation language (DML)</th>
-                    <td>Manipulates data. Examples: SELECT, UPDATE, INSERT, DELETE.</td>
-                </tr>
-                <tr>
-                    <th>Database catalogue</th>
-                    <td>Data dictionary; data about the data.</td>
-                </tr>
-                <tr>
-                    <th>Domain</th>
-                    <td>Set of values and functions defined over them. An ADT.</td>
-                </tr>
-                <tr>
-                    <th>Domain constraint</th>
-                    <td>If attribute specifies an int, you must supply an int.</td>
-                </tr>
-                <tr>
-                    <th>Foreign key</th>
-                    <td>Attribute that is the primary key of another relation.</td>
-                </tr>
-                <tr>
-                    <th>Integrity</th>
-                    <td><ul>
-                        <li>Entity integrity: primary key cannot be null in value.</li>
-                        <li>Referential integrity: value of a foreign key must be found in its source table. For example, if you use user = 111 in transactions, you must have user 111 in your users table.</li>
-                    </ul></td>
-                </tr>
-                <tr>
-                    <th>Null</th>
-                    <td>not known; does not apply.</td>
-                </tr>
-                <tr>
-                    <th>Relation</th>
-                    <td>Table.</td>
-                </tr>
-                <tr>
-                    <th>Relation Schema</th>
-                    <td>Names of all attributes in the relation.</td>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th>Security</th>
-                    <td>Could be physical (theft, fire, ...), authorisation (user/pass) and authentication (user level).</td>
-                </tr>
-                <tr>
-                    <th>Tuple</th>
-                    <td>Table row.</td>
-                </tr>
-            </table>
-    </div></body>
+<head>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/grace/grace.js"></script>
+</head>
+<body class="template contents" data-template-src="notes_template.html">
+    <h1>CS 338 Notes</h1>
+
+    <h2>Defintitions</h2>
+        <table>
+            <tr>
+                <th>Attribute</th>
+                <td>Table column OR a given property of a tuple.</td>
+            </tr>
+            <tr>
+                <th>Database (DB)</th>
+                <td>A collection of files (records and dictionaries) containing data</td>
+            </tr>
+            <tr>
+                <th>Database management system (DBMS)</th>
+                <td>
+                    Collection of programs that manipulate databases:
+                    <ul>
+                        <li>Maintains, replicates, recovers data</li>
+                        <li>Applies access restrictions</li>
+                        <li>Ensures data independence (physically / logically)</li>
+                        <li>Ensures data concurrency (many things can be done to a DB at any given time at multiple locations)</li>
+                        <li>Ensures data consistency, i.e. byte order</li>
+                        <li>Enforces data integrity, i.e. the data means something</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>Data definition language (DDL)</th>
+                <td>Specifies database schemas. Examples: ALTER TABLE, TRUNCATE, DROP.</td>
+            </tr>
+            <tr>
+                <th>Data manipulation language (DML)</th>
+                <td>Manipulates data. Examples: SELECT, UPDATE, INSERT, DELETE.</td>
+            </tr>
+            <tr>
+                <th>Database catalogue</th>
+                <td>Data dictionary; data about the data.</td>
+            </tr>
+            <tr>
+                <th>Domain</th>
+                <td>Set of values and functions defined over them. An ADT.</td>
+            </tr>
+            <tr>
+                <th>Domain constraint</th>
+                <td>If attribute specifies an int, you must supply an int.</td>
+            </tr>
+            <tr>
+                <th>Foreign key</th>
+                <td>Attribute that is the primary key of another relation.</td>
+            </tr>
+            <tr>
+                <th>Integrity</th>
+                <td><ul>
+                    <li>Entity integrity: primary key cannot be null in value.</li>
+                    <li>Referential integrity: value of a foreign key must be found in its source table. For example, if you use user = 111 in transactions, you must have user 111 in your users table.</li>
+                </ul></td>
+            </tr>
+            <tr>
+                <th>Null</th>
+                <td>not known; does not apply.</td>
+            </tr>
+            <tr>
+                <th>Relation</th>
+                <td>Table.</td>
+            </tr>
+            <tr>
+                <th>Relation Schema</th>
+                <td>Names of all attributes in the relation.</td>
+            </tr>
+            <tr>
+                <th></th>
+                <td></td>
+            </tr>
+            <tr>
+                <th></th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Security</th>
+                <td>Could be physical (theft, fire, ...), authorisation (user/pass) and authentication (user level).</td>
+            </tr>
+            <tr>
+                <th>Tuple</th>
+                <td>Table row.</td>
+            </tr>
+        </table>
+</body>
 </html>
