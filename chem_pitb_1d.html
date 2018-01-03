@@ -1,12 +1,11 @@
 <!doctype html>
 <html>
 <head>
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="lib/grace/grace.js"></script>
+    <script src="node_modules/grace-js/grace.js"></script>
 </head>
 <body class="template contents" data-template-src="notes_template.html">
     <h1>CHEM 356 Notes</h1>
-    
+
     <h2>Particle in a Box: Time-independent, 1D version</h2>
         <p>The <a class="dt">schrodinger equation</a> remains $\hat{H} \Psi = E \Psi$.
             However, we have two boundary conditions:</p>
@@ -19,13 +18,13 @@
             \nabla^2 \Psi (x) + \frac{2mE}{\hbar^2} \Psi (x) &=& 0 \\
             \frac{\partial^2}{\partial x^2} \Psi (x) + \frac{2mE}{\hbar^2} \Psi (x) &=& 0 \\
             \end{eqnarray*}$</div>
-        <p>Solve the differential equation, and obtain roots: 
+        <p>Solve the differential equation, and obtain roots:
             $\Psi(x) = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} = \pm \frac{i}{\hbar}\sqrt{2mE}$</p>
         <p>And so the general solution is:</p>
-        <div class="math">$\Psi(x) = A e^{\frac{+i}{\hbar}\sqrt{2mE}x} + 
+        <div class="math">$\Psi(x) = A e^{\frac{+i}{\hbar}\sqrt{2mE}x} +
                         B e^{\frac{-i}{\hbar}\sqrt{2mE}x}$
         </div>
-        
+
         <p>Using the first boundary condition ($\Psi(0) = 0$),</p>
         <div class="math">$\begin{eqnarray*}
             \Psi(x) &=& A e^{\frac{+i}{\hbar}\sqrt{2mE}x} + B e^{\frac{-i}{\hbar}\sqrt{2mE}x} \\
@@ -33,23 +32,23 @@
             0 &=& A + B \\
             A &=& -B \\
             \end{eqnarray*}$</div>
-        
+
         <p>Substituting $B = -A$ back into the above to get</p>
         <div class="math">$\begin{eqnarray*}
             \Psi(x) &=& A e^{\frac{+i}{\hbar}\sqrt{2mE}x} + (-A) e^{\frac{-i}{\hbar}\sqrt{2mE}x} \\
             \Psi(x) &=& A (e^{\frac{+i}{\hbar}\sqrt{2mE}x} - e^{\frac{-i}{\hbar}\sqrt{2mE}x}) \\
             \end{eqnarray*}$</div>
-            
+
         <p>Expand the equation using <a class="dt">Euler's Equation</a>. You should get</p>
         <div class="math">$\begin{eqnarray*}
             \Psi(x) &=& A (e^{\frac{+i}{\hbar}\sqrt{2mE}x} - e^{\frac{-i}{\hbar}\sqrt{2mE}x}) \\
-            \Psi(x) &=& A (\cos{\frac{\sqrt{2mE}}{\hbar}x} + i\sin{\frac{\sqrt{2mE}}{\hbar}x} 
+            \Psi(x) &=& A (\cos{\frac{\sqrt{2mE}}{\hbar}x} + i\sin{\frac{\sqrt{2mE}}{\hbar}x}
                          - \cos{\frac{\sqrt{2mE}}{\hbar}x} + i\sin{\frac{\sqrt{2mE}}{\hbar}x}) \\
             \Psi(x) &=& A (2i\sin{\frac{\sqrt{2mE}}{\hbar}x}) \\
             \Psi(x) &=& C (\sin{\frac{\sqrt{2mE}}{\hbar}x}) \\
             \end{eqnarray*}$</div>
-            
-        <p>Then notice that $\Psi(L) = 0$, so either $C$ is 0 
+
+        <p>Then notice that $\Psi(L) = 0$, so either $C$ is 0
             or $\sin{\frac{\sqrt{2mE}}{\hbar}(L)}$ is 0. <br />
             $C$ won't be 0 because
             that would be stupid ("the particle does not exist").<br />
@@ -62,14 +61,14 @@
                                       E &=& \frac{1}{2m} (\frac{n \pi\hbar}{L})^2 \\
                                       E &=& \frac{n^2 h^2}{8mL} \\
             \end{eqnarray*}$</div>
-        
+
         <p>And therefore:</p>
         <div class="math">$\Psi(x) = C (\sin{\frac{n \pi}{L}x})$.</div>
 
         <h3>Solving for $C$</h3>
-            <p>C is still unknown. Because we know the particle has 100% 
+            <p>C is still unknown. Because we know the particle has 100%
                 probability of being in the box, we can use that fact to find $C$.</p>
-            
+
             <div class="math">$\begin{eqnarray*}
                 1 &=& \int^{\infty}_{-\infty} \Psi^{*} \Psi d\tau \\
                   &=& \int^{\infty}_{-\infty} C^{*}(\sin{\frac{n \pi}{L}x})
@@ -78,24 +77,24 @@
                                                      (\sin{\frac{n \pi}{L}x}) dx \\
                   &=& |C|^2 \int^{L}_{0} \sin^2{\frac{n \pi}{L}x} dx \\
                 \end{eqnarray*}$</div>
-            
+
             <p>Resolve $sin^2$ using the <a class="dt">double angle formula</a>:</p>
             <div class="math">$\begin{eqnarray*}
                             1 &=& |C|^2 \int^{L}_{0} \frac{1}{2} - \cos{\frac{2 n \pi}{L}x} dx \\
                             1 &=& |C|^2 [\frac{1}{2}x - \frac{1}{2}\sin{\frac{2 n \pi}{L}x}]^{L}_{0} \\
-                            1 &=& |C|^2 [\frac{1}{2}(L) - \frac{1}{2}\sin{\frac{2 n \pi}{L}(L)} 
+                            1 &=& |C|^2 [\frac{1}{2}(L) - \frac{1}{2}\sin{\frac{2 n \pi}{L}(L)}
                                        - \frac{1}{2}(0) + \frac{1}{2}\sin{\frac{2 n \pi}{L}(0)}] \\
                             1 &=& |C|^2 [\frac{1}{2}(L) - (0) - (0) + (0)] \\
                             1 &=& |C|^2 \cdot \frac{L}{2} \\
                   \frac{2}{L} &=& |C|^2 \\
                             C &=& \sqrt{\frac{2}{L}}. \\
                 \end{eqnarray*}$</div>
-            
+
             <p>Put that back into $\Psi(x) = C (\sin{\frac{n \pi}{L}x})$, and you're done!</p>
             <div class="math">$\Psi(x) = \sqrt{\frac{2}{L}} \sin{\frac{n \pi}{L}x}$ (for inside the box)</div>
-    
+
         <h3>Implications</h3>
-            <p>We got the result above that $E = \frac{n^2 h^2}{8mL}$. 
+            <p>We got the result above that $E = \frac{n^2 h^2}{8mL}$.
                 So, by quantum number:</p>
             <table>
                 <tr>

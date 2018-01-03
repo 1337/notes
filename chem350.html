@@ -1,12 +1,11 @@
 <!doctype html>
 <html>
 <head>
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="lib/grace/grace.js"></script>
+    <script src="node_modules/grace-js/grace.js"></script>
 </head>
 <body class="template contents" data-template-src="notes_template.html">
     <h1>CHEM 350 Notes</h1>
-    
+
     <h2>Some math</h2>
         <p>Stirling approximation <span class="math">\ln{N!}=N \ln{N}-N=N(\ln{N}-1)=N\ \ln{N\over e}</span></p>
         <p>Variance of property <span class="math">\nu</span></p>
@@ -18,13 +17,13 @@
                                     & = & \langle\nu^2 \rangle-\langle\nu\rangle^2 \\
         \end{array}</div>
         <p>Standard deviation <span class="math">\sigma=\sqrt{\langle\nu^2\rangle-\langle\nu\rangle^2}</span></p>
-    
+
     <h2>Probabilityï¼Œ Boltzmann Distribution and Partition Functions</h2>
         <p>All accessible energy levels in a box: <span class="math">\varepsilon</span></p>
         <div class="math">
         \varepsilon(n_x,n_y,n_z )=\frac{h^2}{8m}(\frac{n_x^2}{L_x^2}+\frac{n_y^2}{L_y^2}+\frac{n_z^2}{L_z^2})
         </div>
-        <p>Let's name a variable called <span class="math">K_{box}</span>, and 
+        <p>Let's name a variable called <span class="math">K_{box}</span>, and
             <span class="math">\varepsilon_i</span> be one of the accessible energy levels in a box
             with total enrgy <span class="math">E</span></p>
         <div class="math">K_{box}=\frac{\mathbb{C}u}{mL^2}</div>
@@ -37,7 +36,7 @@
         <p>Permutation <span class="math">P(N,n)=C(N,n)\times p^n p^{N-n}</span></p>
         <h3>Term symbol</h3>
             <div class="math">
-                {}^{2s+1}\{\Sigma \Pi \Delta\}_J  
+                {}^{2s+1}\{\Sigma \Pi \Delta\}_J
             </div>
 
     <h2>Ensembles,molecular partition functions, partition functions for different degrees of freedom (Chapter 14)</h2>
@@ -48,7 +47,7 @@
         <p><span class="math">\beta= \frac{1}{k_BT}</span>
         (inverse of temperature:heat flows from small <span class="math">\beta</span> to large <span class="math">\beta</span>)</p>
         <p><span class="math">\alpha=\ln{\frac{N}{q}}</span>,used as <span class="math">e^\alpha=\frac{N}{q}</span>.</p>
-        
+
         <h3>Boltzmann Distribution 1 (where alpha came from)</h3>
         <div class="math">
             \begin{array}{rcl}
@@ -79,7 +78,7 @@
         and\ \frac{\delta}{\delta\beta} e^{-\beta\varepsilon_i} & = & \varepsilon_i e^{-\beta\varepsilon_i}\ (obviously)
             \end{array}
         </div>
-        
+
         <h3>Components of q</h3>
             <p>Thermal DeBroglie wavelength <span class="math"> \Lambda=\sqrt{\frac{h^2}{2\pi m k_B T}} = \sqrt{\frac{304.7811}{mT}}[â„«]</span></p>
             <div class="math">q_{trans}=\frac{V}{\Lambda^3}</div>
@@ -107,7 +106,7 @@
                 (I think)
             </p>
             <div class="math">
-                \Theta_{rot}=\frac{B_0}{k_B} = \frac{(B_e -\frac{1}{2}\alpha_e)}{k_B} 
+                \Theta_{rot}=\frac{B_0}{k_B} = \frac{(B_e -\frac{1}{2}\alpha_e)}{k_B}
             </div>
             <p>Symmetry number <span class="math">\sigma</span>
                 = number of distinct but equivalent configurations which can be achieved by rotating</p>
@@ -123,7 +122,7 @@
                <span class="math">=\frac{\sqrt{\pi}}{\sigma}
                                     \sqrt{\frac{T^3}{\Theta_{rot}^A \Theta_{rot}^B \Theta_{rot}^V}}</span> (non-linear)
                <span class="math">=\frac{T}{2\Theta_{rot}}</span> (polyatomic)</p>
-                    
+
             <p>
                 <span class="math">q_{nuc}=g_{nuc}</span> (I think) = <span class="math">\prod_{atoms\ i} 2I_i+1</span>(find I on data sheet)
             </p>
@@ -133,10 +132,10 @@
             <div class="math">
                 \begin{array}{rcl}
                 q_{tot} & = & q_{trans}(T)\times q_{nuc}\times q_{elec} \times q_{vib} (T) \times q_{rot} (T) \\
-                        & = & [\frac{V}{\Lambda^3} \times 
-                              [\prod_{atoms\ i} (2I_i+1)] \times 
-                              [2J+1] \times 
-                              [\frac{1}{1-e^{-\Theta_{vib}/T}}] \times 
+                        & = & [\frac{V}{\Lambda^3} \times
+                              [\prod_{atoms\ i} (2I_i+1)] \times
+                              [2J+1] \times
+                              [\frac{1}{1-e^{-\Theta_{vib}/T}}] \times
                               [\frac{T}{\sigma\Theta_{rot}}]
                 \end{array}
             </div>
@@ -160,7 +159,7 @@
         </div>
         <p>Probability for encountering this configuration: <span class="math">P_D = \frac{W_D}{W_{tot}}</span>
         (subscript D in <span class="math">W_D</span> means "statistical weight of this <b>D</b>istribution" )</p>
-        <p>Ensemble: collection of distinct systems obeying the same macroscopic conservation law.</p>        
+        <p>Ensemble: collection of distinct systems obeying the same macroscopic conservation law.</p>
         <p><b>Ensemble average</b> (of any property '<span class="math">\nu</span>'):</p>
         <div class="math">
             \begin{array}{rcl}
@@ -179,12 +178,12 @@
                             & = & -\frac{\delta \ln{q}}{\delta\beta}
             \end{array}
         </div>
-        
+
         <h3>Total partition function</h3>
         <p><span class="math">Q_{tot}=q^N</span> (distinguishable particles)</p>
         <p><span class="math">Q_{tot}=\frac{q^N}{N!}</span> (indistinguishable particles)</p>
         <p>For a mixture, <span class="math">Q_{tot} = \prod_i Q_{ {tot}_i}</span></p>
-        
+
     <h2>Kinetic Theory of Gases, Maxwellâ€Boltzmann distribution of speeds, collisions (Chapter 16)</h2>
         <p>Bosons (even number of nucleons,can be in the same state)</p>
         <p>Fermions (odd number of nucleons)</p>
@@ -209,7 +208,7 @@
                                       {q}}} \\
                   & = & k_B \sum (\ln{q} + ln{e^{\beta\varepsilon_i}}) \\
                   & = & k_B \sum (\ln{q}+ \beta\varepsilon_i) \\
-                  
+
                   & = & k_B \ln{q} \sum a_i + k_B \beta\sum (\varepsilon_i a_i) \\
                   & = & k_B \ln{q} \sum a_i + k_B \frac{1}{k_B T} \sum (\varepsilon_i a_i) \\
                   & = & k_B \ln{q} N + k_B \frac{1}{k_B T} U \\
@@ -230,7 +229,7 @@
                   & = & N k_B \ln{(\frac{e^{\frac{5}
                                                  {2}}V}
                                         {\Lambda^3 N})}
-            \end{array}            
+            \end{array}
         </div>
         <h3>Sacker-Tetrode Equation</h3>
         <div class="math">S=Nk_B\ln{(\frac{e^{\frac{5}{2}}V}{\Lambda^3 N})}</div>
@@ -244,7 +243,7 @@
                       & = & \frac{5}{2}nR + nR\ln{V} + \frac{3}{2}nR\ln{T} - nR\ln{(const)} \\
                       & = & ... \\
                       & = & \frac{\delta}{\delta T}(k_BT\ln{Q})
-                \end{array}            
+                \end{array}
             </div>
         <h3>Calculations involving <span class="math">\Delta S</span></h3>
         <div class="math">
@@ -254,9 +253,9 @@
                      &   &           & = & nR\ln(\frac{V_2}{V_1})  & \\
             \Delta S & = & S_2 - S_1 & = & S_2(T_2) - S_2(T_1)     & (constant\ volume) \\
                      &   &           & = & nR\ln(T_2) - nR\ln(T_1) & \\
-                     &   &           & = & \frac{3}{2} nR\ln(\frac{T_2}{T_1})  & \\                           
+                     &   &           & = & \frac{3}{2} nR\ln(\frac{T_2}{T_1})  & \\
             \Delta S & = & S_2 - S_1 & = & \frac{5}{2} nR\ln(\frac{P_1}{P_2})  & (constant\ pressure)
-            \end{array}            
+            \end{array}
         </div>
 
     <h2>Transport properties (Chapter 17)</h2>
@@ -269,19 +268,19 @@
                 \begin{array}{rcl}
                     \mu_\alpha & = & -N_A k_B T \ln{\frac{q_\alpha e}{N_A}} + PV \\
                                & = & -N_A k_B T \ln{\frac{q_\alpha}{N_A}} -N_A k_B T \ln{e} + N_A k_B T \\
-                               & = & -N_A k_B T \ln{\frac{q_\alpha}{N_A}} \\                                   
-                \end{array}            
+                               & = & -N_A k_B T \ln{\frac{q_\alpha}{N_A}} \\
+                \end{array}
             </div>
-            <p>Now set a reference pressure <span class="math">P^0</span></p>               
+            <p>Now set a reference pressure <span class="math">P^0</span></p>
             <div class="math">
                 \begin{array}{rcl}
                     \frac{q_{\alpha}}{N_A} & = & q_{trans}^{\alpha} \times q_{int}^{\alpha} \\
                                            & = & [\frac{V}{N_A\Lambda_{\alpha}^3}]\times q_{int}^{\alpha} \times [\frac{P^0}{P^0}] \\
                                            & = & (\frac{1}{N_A\Lambda_{\alpha}^3}\frac{RT}{N_AP^0})(\frac{P_0}{P_{\alpha}}) \\
                                            & = & \frac{q_{\alpha}^0}{N_A}\frac{P_0}{P_{\alpha}}
-                \end{array}            
+                \end{array}
             </div>
-            <p>where <span class="math">q_{\alpha}^0</span> is the q for species 
+            <p>where <span class="math">q_{\alpha}^0</span> is the q for species
                 <span class="math">\alpha</span> under standard pressure.</p>
             <h4>Molar Gibbs Energy</h4>
                 <p>For <span class="math">n_bB + n_cC \rightleftharpoons n_dD + n_eE</span></p>
@@ -294,20 +293,20 @@
                                                 { {(\frac{q_b}{N_A})}^{n_b}{(\frac{q_c}{N_A})}^{n_c}}\bigr)} \\
                           or & = & -RT\ln{(\frac{\prod_{products\ i}(\frac{q_i}{N_A})^{n_i}}
                                                 {\prod_{reactants\ j}(\frac{q_j}{N_A})^{n_j}})}
-                \end{array}                                
+                \end{array}
                 </div>
-                <p>Notice that at equilibrium, <span class="math">\Delta G = -RT \ln{(1)} = 0</span>, so 
+                <p>Notice that at equilibrium, <span class="math">\Delta G = -RT \ln{(1)} = 0</span>, so
                     <span class="math">\frac{\prod_{products\ i}(\frac{q_i}{N_A})^{n_i}}
                                                 {\prod_{reactants\ j}(\frac{q_j}{N_A})^{n_j}}</span>
                     must be 1 at equilibrium.</p>
                 <p>Convert that using the conversion factor</p>
                 <div class="math">\frac{q_\alpha}{N_A} = \frac{q_\alpha^0}{N_A}\frac{P_0}{P_\alpha}</div>
                 <div class="math">
-                    \prod_{products} (\frac{q_i}{N_A})^{n_i} \rightarrow 
+                    \prod_{products} (\frac{q_i}{N_A})^{n_i} \rightarrow
                     \prod_{products} (\frac{q_i^0}{N_A})^{n_i} (\frac{P_0}{P_i})^{n_i}
                 </div>
-                <p>By isolating these pressure terms and picking 
-                    <span class="math">P^0 = 1 bar/atm</span>, we get (for the case of 
+                <p>By isolating these pressure terms and picking
+                    <span class="math">P^0 = 1 bar/atm</span>, we get (for the case of
                     <span class="math">n_bB + n_cC \rightleftharpoons n_dD + n_eE</span>)</p>
                 <div class="math">
                     \frac{(\frac{P_0}{P_d})^{n_d}(\frac{P_0}{P_e})^{n_e}}
@@ -315,7 +314,7 @@
                   = \frac{(P_d)^{n_d}(P_e)^{n_e}}
                          {(P_b)^{n_b}(P_c)^{n_c}} = K_p
                 </div>
-        
+
         <h3>Rate Laws</h3>
             <h4>Zeroth order rate law:</h4>
                 <p>Graph of [A] vs t is linear.</p>
@@ -353,8 +352,8 @@
                     <p>Only in first order rate laws are half lives constant:
                     <span class="math">t_{\frac{1}{2}}=\frac{\ln{2}}{k}</span>
                     </p>
-                
-            <h4>Second order rate law:</h4>    
+
+            <h4>Second order rate law:</h4>
                 <p>Graph of 1/[A] vs t is linear.</p>
                 <div class="math">Rate = -\frac{d[A]}{dt}=k[A]^1=k[A]^2</div>
                 <p>or</p>
@@ -368,7 +367,7 @@
                 <div class="math">\frac{1}{[A]_0}=-k_0+C\rightarrow C=-\frac{1}{[A]_0}</div>
                 <p>so</p>
                 <div class="math">\frac{1}{[A]_t}-\frac{1}{[A]_0}=kt</div>
-            
+
             <h4>Order n rate law:</h4>
                 <div class="math">
                     \frac{1}{ {[A]_t}^{n-1}}-\frac{1}{ {[A]_0}^{n-1}}=(n-1)kt

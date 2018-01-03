@@ -1,12 +1,11 @@
 <!doctype html>
 <html>
 <head>
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="lib/grace/grace.js"></script>
+    <script src="node_modules/grace-js/grace.js"></script>
 </head>
 <body class="template contents" data-template-src="notes_template.html">
     <h1>CHEM 356 Notes</h1>
-    
+
     <h2>Particle in a Box: Time-independent, 3D version</h2>
         <p>The 3D <a class="dt">schrodinger equation</a> is a simple extension
             to <a href="chem_pitb_1d.html">the 1D version</a>.
@@ -20,14 +19,14 @@
             \end{eqnarray*}$</div>
 
         <p>The three dimensions are apparently independent. <br />
-            So, split $\Psi (x,y,z)$ into 
+            So, split $\Psi (x,y,z)$ into
             $\Psi (x,y,z) = \Psi_x (x) \cdot \Psi_y (y) \cdot \Psi_z (z)$.</p>
         <div class="math">$\begin{eqnarray*}
             \frac{\hbar^2}{2m} \nabla^2 \Psi (x) - E \Psi (x) &=& 0 \\
             (\Psi_x + \Psi_y + \Psi_z) + \frac{2mE}{\hbar^2} \Psi_x\Psi_y\Psi_z &=& 0 \\
             \end{eqnarray*}$</div>
 
-        <p>You can now split this equation into three near-identical, 1D ones. 
+        <p>You can now split this equation into three near-identical, 1D ones.
             <a href="chem_pitb_1d.html">See derivation</a>)</p>
         <div class="math">$\begin{eqnarray*}
             \Psi_x (x) &=& \sqrt{\frac{2}{a}} \sin{\frac{n_x \pi}{a}x} \\
@@ -38,27 +37,27 @@
         <p>Re-realise that $\Psi(x,y,z) = \Psi_x \cdot \Psi_y \cdot \Psi_z$:</p>
         <div class="math">$\begin{eqnarray*}
             \Psi(x,y,z) &=& \Psi_x \cdot \Psi_y \cdot \Psi_z \\
-                        &=& \sqrt{\frac{2}{a}} \sin{\frac{n_x \pi}{a}x} 
-                            \sqrt{\frac{2}{b}} \sin{\frac{n_y \pi}{b}y} 
+                        &=& \sqrt{\frac{2}{a}} \sin{\frac{n_x \pi}{a}x}
+                            \sqrt{\frac{2}{b}} \sin{\frac{n_y \pi}{b}y}
                             \sqrt{\frac{2}{c}} \sin{\frac{n_z \pi}{c}z} \\
-                        &=& \sqrt{\frac{8}{abc}} \sin{\frac{n_x \pi}{a}x} 
-                                                 \sin{\frac{n_y \pi}{b}y} 
+                        &=& \sqrt{\frac{8}{abc}} \sin{\frac{n_x \pi}{a}x}
+                                                 \sin{\frac{n_y \pi}{b}y}
                                                  \sin{\frac{n_z \pi}{c}z} \\
             \end{eqnarray*}$</div>
-        <p>($= (\frac{2}{L^2})^{\frac{3}{2}} \sin{\frac{n_x \pi x}{L}} 
-                                             \sin{\frac{n_y \pi y}{L}} 
-                                             \sin{\frac{n_z \pi z}{L}}$ 
+        <p>($= (\frac{2}{L^2})^{\frac{3}{2}} \sin{\frac{n_x \pi x}{L}}
+                                             \sin{\frac{n_y \pi y}{L}}
+                                             \sin{\frac{n_z \pi z}{L}}$
             if the box is a cube.)</p>
-        
+
         <p>And the energy is now:</p>
         <div class="math">$\begin{eqnarray*}
             E_{xyz} &=& E_x + E_y + E_z \\
                     &=& \frac{n_x^2 h^2}{8ma} + \frac{n_y^2 h^2}{8mb} + \frac{n_z^2 h^2}{8mc}\\
                     &=& \frac{h^2}{8m}(\frac{n_x^2}{a^2} + \frac{n_y^2}{b^2} + \frac{n_z^2}{c^2})\\
             \end{eqnarray*}$</div>
-        
+
         <h3>Degeneracy</h3>
-        <p>If any of the three quantum numbers are the same, then we get 
+        <p>If any of the three quantum numbers are the same, then we get
             degeneracy, e.g. $[2,1,1]$, $[1,2,1]$, and $[1,1,2]$.</p>
 </body>
 </html>
